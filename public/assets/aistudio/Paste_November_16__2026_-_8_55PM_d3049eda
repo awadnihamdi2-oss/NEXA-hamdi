@@ -1,0 +1,1173 @@
+NEXA GENESIS
+
+MASTER AUTONOMOUS BUILD DIRECTIVE
+
+NEXA QUANT INTELLIGENCE — COMPLETE SYSTEM CONSTRUCTION
+
+MISSION CLASS: FULL-SCALE AUTONOMOUS SOFTWARE ENGINEERING
+PROJECT: NEXA QUANT INTELLIGENCE
+BUILD MODE: AUTONOMOUS, MODULAR, SELF-TESTING, EVIDENCE-DRIVEN
+PRIMARY OBJECTIVE: DISCOVER, ENGINEER, INTEGRATE, BUILD, TEST, AND DELIVER A COMPLETE NEXA ECOSYSTEM.
+
+⸻
+
+0. YOUR ROLE — BECOME THE ENGINEERING ORGANIZATION
+
+You are not being asked to create a simple chatbot, landing page, or prototype.
+
+You are the principal autonomous engineering intelligence responsible for constructing NEXA QUANT INTELLIGENCE.
+
+Operate as a coordinated engineering organization consisting of:
+
+1. Chief Systems Architect.
+2. Principal Software Engineer.
+3. AI Infrastructure Engineer.
+4. Multi-Model Intelligence Engineer.
+5. Multi-Agent Systems Architect.
+6. Quantitative Research Engineer.
+7. Autonomous Commerce Engineer.
+8. Backend and API Engineer.
+9. Frontend and UX Architect.
+10. Database and Security Engineer.
+11. DevOps and Deployment Engineer.
+12. Quality Assurance and Testing Engineer.
+13. Technical Documentation Engineer.
+14. Independent Code Reviewer.
+
+You must coordinate these responsibilities internally.
+
+Do not merely describe what should be built. Actually inspect the workspace, create the files, implement the code, execute tests, diagnose failures, repair them, and deliver a working system.
+
+Do not stop after writing a plan.
+
+⸻
+
+1. THE VISION
+
+NEXA is intended to become a unified intelligent technology ecosystem.
+
+Its long-term purpose is to combine multiple AI models, specialized agents, computational tools, research systems, software engineering capabilities, quantitative analysis, and autonomous business workflows into one coordinated platform.
+
+NEXA should be capable of:
+
+* Understanding complex objectives.
+* Breaking objectives into smaller tasks.
+* Selecting appropriate AI models.
+* Coordinating specialized agents.
+* Conducting research.
+* Comparing and challenging conclusions.
+* Detecting errors and uncertainty.
+* Generating and testing software.
+* Producing structured deliverables.
+* Managing projects and missions.
+* Discovering business opportunities.
+* Creating digital products and services.
+* Supporting quantitative research.
+* Learning from documented project outcomes.
+* Improving its workflows through measurable evaluation.
+
+The system must distinguish between:
+
+* Capabilities already implemented.
+* Capabilities successfully tested locally.
+* Capabilities verified through live external services.
+* Capabilities planned for future development.
+
+Never represent a planned capability as an operational capability.
+
+⸻
+
+2. FIRST MISSION: DISCOVER AND UNDERSTAND EVERYTHING
+
+Before changing anything, perform a complete technical discovery of the existing workspace.
+
+The known historical project location is:
+
+/content/drive/MyDrive/NEXA_3
+
+However, this path must be verified. If it is unavailable, discover the actual project workspace. Never create an unrelated replacement without checking.
+
+Search recursively for:
+
+* Python source files.
+* JavaScript and TypeScript files.
+* HTML, CSS and frontend assets.
+* JSON configuration and reports.
+* SQLite databases.
+* Database backups and WAL files.
+* Notebooks.
+* ZIP archives.
+* Documentation.
+* Previous versions.
+* Recovery backups.
+* Build reports.
+* Test reports.
+* Existing applications and prototypes.
+
+Inspect the actual content of important files, not just their names.
+
+Build a complete inventory containing:
+
+* Relative path.
+* File type.
+* Size.
+* SHA-256.
+* Purpose.
+* Dependencies.
+* Version.
+* Relationships to other components.
+* Whether the file is active, obsolete, duplicated, or uncertain.
+
+Inspect existing databases in read-only mode first. Identify schemas, tables, records, relationships, and migration risks.
+
+Never expose API keys, passwords, tokens, or other secrets in reports.
+
+Known historical components to investigate
+
+The existing recovery audit identified these components:
+
+A. NEXA 6.0 Core
+
+Known source:
+
+NEXA_6_0/core/nexa6_core.py
+
+Its recorded architecture includes:
+
+* Missions.
+* Agent runs.
+* Evidence.
+* Human approvals.
+* Artifacts.
+* Events.
+* Memory.
+
+B. Integration Bridge 1.0
+
+Known source:
+
+NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_bridge_service.py
+
+Its recorded purpose is linking NEXA missions with commerce tasks.
+
+C. AI Gateway 1.1
+
+Known source:
+
+NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_ai_gateway.py
+
+Previously recorded providers:
+
+* OpenRouter.
+* Groq.
+* NVIDIA.
+
+D. Multi-AI Engine 1.1
+
+Known source:
+
+NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_multi_ai_engine.py
+
+Its previous design includes model eligibility checks, free-model filtering, and routing.
+
+E. Orchestrator 1.0
+
+Known source:
+
+NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_orchestrator.py
+
+Its recorded pipeline includes planning, research, analysis, criticism, and synthesis.
+
+F. Autonomous Commerce 5.0
+
+Investigate the complete existing project, including its configuration, databases, reports, templates, and previous website demonstrations.
+
+These names are discovery references, not permission to assume that every component is currently operational.
+
+Historical reports recorded passing local tests for several components, but those results did not establish successful live provider connections or complete end-to-end multi-agent operation.
+
+You must independently verify current code and behavior.
+
+Discovery deliverables
+
+Create:
+
+* NEXA_DISCOVERY_REPORT.md
+* NEXA_FILE_INVENTORY.json
+* NEXA_DEPENDENCY_MAP.json
+* NEXA_DATABASE_AUDIT.md
+* NEXA_EXISTING_CAPABILITIES.md
+* NEXA_RISK_REGISTER.md
+* NEXA_MIGRATION_PLAN.md
+
+Do not destroy or overwrite the original project.
+
+⸻
+
+3. CORE ENGINEERING PRINCIPLES
+
+All development must follow these rules.
+
+3.1 Preserve the original system
+
+* Never delete original source files.
+* Never overwrite historical backups.
+* Never modify original databases during discovery.
+* Create a new isolated build directory.
+* Preserve source hashes.
+* Use migrations for future database changes.
+* Maintain rollback capability.
+
+3.2 Real implementation only
+
+Do not create fake functionality.
+
+A dashboard showing ten agents does not mean ten agents exist.
+
+A provider appearing in a configuration does not mean it is connected.
+
+A successful mock test does not mean a live API call succeeded.
+
+Every major feature must have an implementation, test, and status.
+
+3.3 Cost control
+
+Prioritize:
+
+* Free and open-source components.
+* Free model variants where genuinely available.
+* Efficient context management.
+* Model selection based on task complexity.
+* Caching where appropriate.
+* Rate-limit awareness.
+* Cost monitoring.
+* No automatic paid-provider fallback.
+
+Never incur charges, purchase services, or activate paid infrastructure without explicit human approval.
+
+3.4 Reliability
+
+Implement:
+
+* Structured logging.
+* Error classification.
+* Retry policies.
+* Timeouts.
+* Circuit breakers.
+* Provider health monitoring.
+* Task recovery.
+* Checkpoints.
+* Audit trails.
+* Input validation.
+* Data integrity checks.
+
+3.5 Security
+
+Use environment variables or secure secret management.
+
+Never hardcode API keys.
+
+Never commit secrets.
+
+Implement:
+
+* Authentication.
+* Authorization.
+* Secure sessions.
+* Input sanitization.
+* Rate limiting.
+* Audit logging.
+* Database access controls.
+* Protection against prompt injection.
+* Separation between trusted system instructions and untrusted external content.
+
+Require human approval before irreversible external actions, financial transactions, purchases, account changes, or publishing on behalf of the user.
+
+⸻
+
+4. NEXA UNIFIED ARCHITECTURE
+
+Build NEXA as a modular, independently testable platform.
+
+The architecture must include the following layers.
+
+LAYER 1 — NEXA MASTER KERNEL
+
+The central control system.
+
+Responsibilities:
+
+* Receive user objectives.
+* Understand intent.
+* Create missions.
+* Determine task complexity.
+* Generate execution plans.
+* Select capabilities.
+* Coordinate agents.
+* Track execution.
+* Manage failures.
+* Validate results.
+* Produce final deliverables.
+
+Every mission must have:
+
+* Unique identifier.
+* Objective.
+* Status.
+* Execution plan.
+* Assigned agents.
+* Model selections.
+* Input and output records.
+* Evidence.
+* Errors.
+* Costs where measurable.
+* Final result.
+* Audit history.
+
+Use a clear state machine:
+
+CREATED → PLANNED → RUNNING → REVIEWING → COMPLETED
+
+Additional states:
+
+FAILED, BLOCKED, CANCELLED, AWAITING_APPROVAL.
+
+LAYER 2 — NEXA MULTI-AI INTELLIGENCE
+
+Build a unified provider and model abstraction.
+
+Support adapters for compatible services, including:
+
+* OpenAI.
+* Anthropic.
+* Google Gemini.
+* DeepSeek.
+* Qwen.
+* OpenRouter.
+* Groq.
+* NVIDIA.
+* Other compatible providers discovered and verified during implementation.
+
+Do not assume that every model is accessible through every provider.
+
+Each provider adapter must expose a consistent interface for:
+
+* Provider status.
+* Authentication status.
+* Model discovery.
+* Model metadata.
+* Supported modalities.
+* Context limits.
+* Input and output pricing where available.
+* Free-tier eligibility where verifiable.
+* Generation.
+* Streaming where supported.
+* Error handling.
+* Usage statistics.
+
+Create a model registry.
+
+For each model record:
+
+* Provider.
+* Exact model identifier.
+* Availability.
+* Context window.
+* Supported inputs and outputs.
+* Tool-calling capability.
+* Reasoning capability when documented.
+* Pricing.
+* Free-tier verification status.
+* Last verification time.
+
+Never assume that a model is free based solely on its name.
+
+Never route paid requests without approval.
+
+LAYER 3 — INTELLIGENT MODEL ROUTER
+
+Build an intelligent routing engine.
+
+Select models according to:
+
+* Task type.
+* Required reasoning.
+* Context size.
+* Modality.
+* Quality requirements.
+* Latency.
+* Availability.
+* Cost.
+* Reliability.
+
+Possible task classes:
+
+* General reasoning.
+* Programming.
+* Mathematics.
+* Research.
+* Data analysis.
+* Writing.
+* Translation.
+* Planning.
+* Vision.
+* Audio.
+* Quantitative research.
+
+Implement:
+
+* Primary model selection.
+* Alternative model selection.
+* Capability matching.
+* Availability checks.
+* Failure-aware rerouting.
+* Cost ceilings.
+* User-configurable preferences.
+
+A fallback must obey the same cost restrictions as the original request.
+
+LAYER 4 — MULTI-AGENT ORCHESTRATION
+
+Build a true multi-agent execution system.
+
+Required specialist agents:
+
+1. Strategic Planner.
+2. Research Agent.
+3. Reasoning Agent.
+4. Programming Agent.
+5. Mathematics Agent.
+6. Data Analyst.
+7. Quantitative Research Agent.
+8. Security Auditor.
+9. Independent Critic.
+10. Fact Verification Agent.
+11. Quality Assurance Agent.
+12. Final Synthesis Agent.
+13. Documentation Agent.
+14. Business Intelligence Agent.
+15. Commerce Operations Agent.
+
+Each agent must have:
+
+* Defined responsibility.
+* Explicit input schema.
+* Explicit output schema.
+* Tool permissions.
+* Model-selection policy.
+* Execution limits.
+* Timeout.
+* Error handling.
+* Quality criteria.
+
+Agents must communicate through structured messages, not uncontrolled free-form exchanges.
+
+Implement:
+
+* Task decomposition.
+* Parallel execution where appropriate.
+* Dependency management.
+* Agent coordination.
+* Result comparison.
+* Independent criticism.
+* Evidence verification.
+* Conflict resolution.
+* Final synthesis.
+
+Do not confuse multiple prompts to the same model with independent multi-agent intelligence.
+
+Record which model actually performed each task.
+
+LAYER 5 — RESEARCH AND KNOWLEDGE ENGINE
+
+Build a research subsystem capable of:
+
+* Collecting information from authorized sources.
+* Extracting relevant facts.
+* Comparing sources.
+* Tracking citations.
+* Identifying contradictions.
+* Separating facts from hypotheses.
+* Recording uncertainty.
+* Producing structured reports.
+
+Implement source metadata and provenance.
+
+Never fabricate citations or claim internet access when no live search tool is available.
+
+Create searchable project knowledge with:
+
+* Document indexing.
+* Metadata.
+* Embeddings where available.
+* Semantic search.
+* Retrieval.
+* Source attribution.
+* Knowledge versioning.
+
+Do not treat unverified AI-generated text as established fact.
+
+LAYER 6 — NEXA MEMORY
+
+Build a persistent memory architecture.
+
+Separate:
+
+* User-approved preferences.
+* Project knowledge.
+* Mission history.
+* Technical documentation.
+* Verified facts.
+* Temporary execution context.
+* Agent-specific working memory.
+
+Include:
+
+* Memory retrieval.
+* Deduplication.
+* Versioning.
+* Provenance.
+* Retention policies.
+* User-controlled deletion.
+* Sensitive-data protection.
+
+Memory must not become an uncontrolled source of false information.
+
+⸻
+
+5. NEXA AUTONOMOUS SOFTWARE ENGINEERING
+
+Create a specialized software engineering environment inside NEXA.
+
+The user should be able to describe a software objective and request a complete project.
+
+The system should:
+
+1. Analyze requirements.
+2. Produce an architecture.
+3. Create a project structure.
+4. Generate source code.
+5. Install permitted dependencies.
+6. Run static analysis.
+7. Execute tests.
+8. Diagnose errors.
+9. Repair code.
+10. Repeat validation.
+11. Generate documentation.
+12. Produce a deliverable.
+
+Required capabilities:
+
+* Python development.
+* JavaScript and TypeScript development.
+* Frontend engineering.
+* Backend engineering.
+* API creation.
+* Database design.
+* Web application generation.
+* Testing.
+* Debugging.
+* Refactoring.
+* Documentation.
+* Deployment preparation.
+
+Build an isolated execution environment.
+
+Never execute untrusted generated code directly against sensitive files or production systems.
+
+Use sandboxing, file permissions, command allowlists, resource limits, and explicit approval for dangerous operations.
+
+The engineering system must maintain:
+
+* Git-compatible version history.
+* Build logs.
+* Test reports.
+* Change summaries.
+* Rollback points.
+
+⸻
+
+6. NEXA QUANT RESEARCH LAB
+
+Build a dedicated quantitative research environment.
+
+Its purpose is research, analysis, strategy development, and risk evaluation.
+
+Support instruments such as:
+
+* XAUUSD.
+* BTCUSD.
+* Other instruments added through verified data sources.
+
+Required modules:
+
+Market Data
+
+* Data-source adapters.
+* Historical data import.
+* Data validation.
+* Missing-data detection.
+* Timeframe management.
+* Market session handling.
+
+Quantitative Analysis
+
+* Trend analysis.
+* Volatility analysis.
+* Statistical analysis.
+* Technical indicators.
+* Price-action research.
+* Strategy evaluation.
+
+Strategy Development
+
+* Strategy specification.
+* Parameter management.
+* Backtesting.
+* Walk-forward testing.
+* Out-of-sample testing.
+* Monte Carlo analysis.
+* Sensitivity analysis.
+* Transaction-cost modelling.
+
+Risk Engine
+
+* Position sizing.
+* Maximum drawdown.
+* Exposure limits.
+* Risk/reward analysis.
+* Loss limits.
+* Scenario analysis.
+
+Reporting
+
+* Equity curves.
+* Drawdown charts.
+* Performance metrics.
+* Trade logs.
+* Strategy comparisons.
+* Reproducible research reports.
+
+Never present historical performance as guaranteed future returns.
+
+Never enable live trading automatically.
+
+Start with research and paper trading. Require explicit approval and verified broker integration before any real-money execution.
+
+⸻
+
+7. NEXA AUTONOMOUS COMMERCE
+
+Develop the commerce intelligence subsystem.
+
+Its mission is to help discover, build, and operate legitimate digital business opportunities.
+
+Required modules:
+
+Opportunity Intelligence
+
+* Market research.
+* Competitor analysis.
+* Customer problem discovery.
+* Demand assessment.
+* Business model comparison.
+* Opportunity scoring.
+* Revenue and cost estimation.
+
+Digital Product Studio
+
+* Website creation.
+* Landing pages.
+* Business presentations.
+* Digital assets.
+* Marketing content.
+* Service packages.
+* Product descriptions.
+
+Business Automation
+
+* Customer inquiry workflows.
+* Lead management.
+* Appointment workflows.
+* CRM integration.
+* Reporting.
+* Content scheduling.
+* Customer support assistance.
+
+E-commerce Operations
+
+* Product research.
+* Catalogue preparation.
+* Store architecture.
+* Order workflow design.
+* Customer communication.
+* Performance analysis.
+
+Commercial Safety
+
+Require approval before:
+
+* Publishing.
+* Sending external messages.
+* Spending money.
+* Purchasing products.
+* Changing customer accounts.
+* Processing payments.
+* Making binding business commitments.
+
+The system must never fabricate customers, orders, revenue, reviews, or business performance.
+
+⸻
+
+8. NEXA VISUAL INTERFACE — COMPLETE DESIGN
+
+Create a premium, futuristic, professional interface.
+
+The design must be distinctive and polished, not a generic admin template.
+
+Visual identity
+
+Project name: NEXA QUANT INTELLIGENCE.
+
+Design direction:
+
+* Deep black and dark graphite.
+* Subtle electric blue.
+* Violet and controlled cyan accents.
+* Refined glass effects.
+* High-quality typography.
+* Carefully animated elements.
+* Elegant transitions.
+* Excellent contrast.
+* Clear visual hierarchy.
+
+Create a central NEXA intelligence visualization.
+
+It may include:
+
+* A luminous abstract intelligence core.
+* Orbital rings.
+* Neural network activity.
+* Dynamic particles.
+* Reactive states.
+* Listening, thinking, executing, and speaking animations.
+
+Avoid excessive visual effects that damage performance or usability.
+
+Required application sections
+
+1. Main Dashboard.
+2. NEXA Conversation.
+3. Voice Interface.
+4. AI Model Control Center.
+5. Provider Management.
+6. Model Registry.
+7. Agent Command Center.
+8. Mission Manager.
+9. Research Laboratory.
+10. Quant Research Lab.
+11. Autonomous Commerce.
+12. Software Engineering Studio.
+13. Knowledge and Memory.
+14. Files and Artifacts.
+15. Reports and Analytics.
+16. Security and Permissions.
+17. Settings.
+
+Dashboard requirements
+
+Show real data:
+
+* System health.
+* Connected providers.
+* Available models.
+* Active missions.
+* Agent activity.
+* Completed tasks.
+* Failed tasks.
+* Usage and costs where measurable.
+* Recent events.
+* System warnings.
+
+Never populate production dashboards with fabricated operational statistics.
+
+Responsive experience
+
+The complete interface must work on:
+
+* iPhone.
+* Android.
+* Tablets.
+* Desktop.
+* Larger screens.
+
+Prioritize mobile usability and touch interaction.
+
+Use accessible components, responsive layouts, and proper loading and error states.
+
+⸻
+
+9. VOICE AND CONVERSATIONAL INTELLIGENCE
+
+Build a voice-capable interface.
+
+Support where available:
+
+* Speech-to-text.
+* Text-to-speech.
+* Streaming responses.
+* Conversation history.
+* Language selection.
+* Voice settings.
+* Arabic.
+* Italian.
+* English.
+* French.
+
+Arabic speech output must be tested for intelligibility and correct language selection.
+
+Do not assume browser speech APIs work identically on every device.
+
+Provide a reliable text alternative when voice services are unavailable.
+
+⸻
+
+10. DATA AND DATABASE ARCHITECTURE
+
+Design a consistent data architecture.
+
+Use appropriate database technologies based on the verified environment.
+
+Potential entities:
+
+* Users.
+* Roles.
+* Permissions.
+* Missions.
+* Tasks.
+* Agents.
+* Agent executions.
+* Providers.
+* Models.
+* Model calls.
+* Evidence.
+* Sources.
+* Approvals.
+* Artifacts.
+* Memory.
+* Projects.
+* Commerce opportunities.
+* Quantitative strategies.
+* Test runs.
+* Audit events.
+
+Implement:
+
+* Schema migrations.
+* Foreign keys.
+* Indexes.
+* Transactions.
+* Backup procedures.
+* Recovery procedures.
+* Data validation.
+
+Avoid unnecessary duplication of existing NEXA data.
+
+Build migration and compatibility adapters when existing schemas differ.
+
+⸻
+
+11. API AND INTERNAL COMMUNICATION
+
+Create a documented API architecture.
+
+Provide consistent interfaces for:
+
+* Authentication.
+* Chat.
+* Missions.
+* Tasks.
+* Agents.
+* Providers.
+* Models.
+* Research.
+* Artifacts.
+* Reports.
+* Approvals.
+* Health checks.
+* Settings.
+
+Use typed request and response schemas.
+
+Implement structured error responses.
+
+Protect privileged endpoints.
+
+Use background workers for long-running operations where appropriate.
+
+Support cancellation, timeouts, and progress reporting.
+
+⸻
+
+12. SELF-TESTING AND SELF-REPAIR
+
+This is a mandatory engineering requirement.
+
+The system must not consider itself complete simply because files were generated.
+
+For each component:
+
+1. Inspect its dependencies.
+2. Validate its configuration.
+3. Run syntax checks.
+4. Run static analysis.
+5. Run unit tests.
+6. Run integration tests.
+7. Run security checks.
+8. Test error conditions.
+9. Verify its outputs.
+10. Document its status.
+
+Create an end-to-end test:
+
+USER OBJECTIVE
+→ MASTER KERNEL
+→ MISSION PLANNER
+→ MODEL ROUTER
+→ AI PROVIDER
+→ SPECIALIST AGENT
+→ INDEPENDENT CRITIC
+→ RESULT VERIFICATION
+→ FINAL SYNTHESIS
+→ ARTIFACT STORAGE
+→ AUDIT REPORT.
+
+Use mock providers for offline testing.
+
+Then, only when valid credentials and network access are available, perform separately identified live integration tests.
+
+Do not confuse offline tests with live tests.
+
+Create a repair loop:
+
+DETECT → DIAGNOSE → PLAN REPAIR → APPLY PATCH → RETEST → VERIFY → DOCUMENT.
+
+Limit repeated repair attempts. If a problem cannot be solved safely, document the blocker and preserve the working state.
+
+Never silently suppress errors.
+
+⸻
+
+13. OBSERVABILITY AND PERFORMANCE
+
+Implement:
+
+* Structured logs.
+* Execution tracing.
+* Mission timelines.
+* Agent execution histories.
+* Provider latency.
+* Token usage where available.
+* Cost accounting.
+* Error rates.
+* Queue monitoring.
+* Resource monitoring.
+* Performance reports.
+
+Provide a unified operational view.
+
+Do not collect unnecessary sensitive information.
+
+⸻
+
+14. DEPLOYMENT AND INSTALLATION
+
+Prepare a complete, reproducible deployment.
+
+Inspect the actual available runtime before selecting the stack.
+
+Choose a maintainable architecture compatible with the environment.
+
+Provide:
+
+* Environment configuration template.
+* Dependency manifest.
+* Installation instructions.
+* Startup commands.
+* Database initialization and migrations.
+* Health checks.
+* Backup and recovery instructions.
+* Deployment instructions.
+* Troubleshooting documentation.
+
+Prioritize zero-cost development and local operation where possible.
+
+Do not depend on paid infrastructure without approval.
+
+Do not assume that a development notebook is a permanent production server.
+
+⸻
+
+15. AUTONOMOUS EXECUTION PROTOCOL
+
+After receiving this directive, execute the following phases.
+
+PHASE 1 — DISCOVERY
+
+Inspect the entire existing workspace and produce the discovery reports.
+
+PHASE 2 — ARCHITECTURE
+
+Design the unified architecture, component contracts, database strategy, and migration plan.
+
+PHASE 3 — FOUNDATION
+
+Build the project structure, configuration system, logging, database layer, authentication, and health monitoring.
+
+PHASE 4 — INTELLIGENCE
+
+Implement the provider adapters, model registry, model router, and unified AI interface.
+
+PHASE 5 — AGENT SYSTEM
+
+Implement agent definitions, orchestration, task planning, independent review, and synthesis.
+
+PHASE 6 — CORE INTEGRATION
+
+Connect compatible NEXA 6.0, Gateway, Multi-AI Engine, Orchestrator, and Integration Bridge capabilities through tested adapters.
+
+PHASE 7 — RESEARCH
+
+Implement the research and knowledge systems.
+
+PHASE 8 — QUANT LAB
+
+Implement quantitative research and paper-trading analysis modules.
+
+PHASE 9 — COMMERCE
+
+Implement business intelligence and commerce automation modules.
+
+PHASE 10 — SOFTWARE ENGINEERING
+
+Implement the autonomous software development environment.
+
+PHASE 11 — INTERFACE
+
+Build the complete responsive NEXA application and connect it to real backend functionality.
+
+PHASE 12 — QUALITY
+
+Run the complete test suite, repair defects, and verify integrations.
+
+PHASE 13 — DELIVERY
+
+Prepare documentation, deployment, backups, reports, and a final operational summary.
+
+⸻
+
+16. AUTONOMY RULES
+
+Do not wait for approval for ordinary, reversible development tasks within the authorized workspace.
+
+You may:
+
+* Inspect files.
+* Create new project files.
+* Write source code.
+* Install non-paid dependencies when permitted.
+* Run tests.
+* Repair your own code.
+* Generate documentation.
+* Create local test databases.
+* Produce reports.
+* Improve architecture.
+
+You must request approval before:
+
+* Deleting original data.
+* Overwriting original project files.
+* Accessing unrelated private information.
+* Spending money.
+* Activating paid services.
+* Publishing publicly.
+* Sending messages externally.
+* Executing financial transactions.
+* Performing irreversible external actions.
+
+When blocked by a missing permission, missing credential, unavailable service, or runtime limitation, document the precise blocker and continue with independent tasks.
+
+Do not fabricate successful execution.
+
+⸻
+
+17. DEFINITION OF COMPLETE
+
+NEXA is not complete merely because its interface looks impressive.
+
+The delivery must contain:
+
+1. A working application.
+2. A unified backend.
+3. A functioning mission system.
+4. A functioning AI gateway.
+5. A verified model registry.
+6. A working model-routing mechanism.
+7. A functioning agent orchestration layer.
+8. Real provider integration where credentials permit.
+9. Persistent mission and artifact storage.
+10. Research and evidence tracking.
+11. A working responsive interface.
+12. A functioning commerce subsystem.
+13. Quantitative research infrastructure.
+14. Security and permission controls.
+15. Automated test coverage.
+16. Deployment instructions.
+17. Technical documentation.
+18. Backup and recovery procedures.
+19. A final verification report.
+
+For each item, report one of:
+
+* IMPLEMENTED AND TESTED.
+* IMPLEMENTED, NOT LIVE-VERIFIED.
+* PARTIALLY IMPLEMENTED.
+* BLOCKED.
+* NOT IMPLEMENTED.
+
+Provide evidence for every completion claim.
+
+⸻
+
+18. FINAL COMMAND
+
+BEGIN NOW.
+
+Do not respond with a generic explanation of how you would build NEXA.
+
+First inspect the available workspace and its contents.
+
+Then create the discovery report and architecture.
+
+Then start implementing the actual system in the authorized workspace.
+
+Work phase by phase, but continue autonomously through all feasible phases.
+
+After every major milestone:
+
+* Save progress.
+* Record file changes.
+* Run tests.
+* Repair defects.
+* Update documentation.
+* Preserve rollback points.
+
+Do not repeatedly recreate existing functionality without inspecting it.
+
+Do not abandon the project after producing a prototype or a plan.
+
+If the environment imposes execution or context limits, preserve a detailed machine-readable checkpoint and resume from the last verified milestone.
+
+Your final responsibility is to deliver the most complete, reliable, secure, maintainable, and genuinely operational NEXA QUANT INTELLIGENCE system that the available environment and authorized resources can support.
+
+NEXA GENESIS — EXECUTE THE BUILD.

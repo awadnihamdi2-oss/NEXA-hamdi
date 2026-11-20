@@ -1,0 +1,58 @@
+# ==============================================================================
+# Render.com FREE Tier Blueprint for NEXA QUANT INTELLIGENCE ($0 / No Credit Card)
+# ==============================================================================
+# Deploy from iPhone Safari or Desktop via:
+#   https://dashboard.render.com/blueprints -> New Blueprint Instance -> Connect GitHub Repo
+#
+# Hosting Cost & Behavior:
+# - Plan: FREE ($0/mo, no credit card required).
+# - Sleep limit: Sleeps after ~15 minutes of inactivity (~30-60s cold wake on request).
+# - Ephemeral container disk: On first cold boot, NEXA auto-hydrates your verified database
+#   from deploy/seed/nexa_seed_baseline.sqlite3 (preserving mission p7_msn_872263ab-3 &
+#   deliverable p7_pkg_a08d5e05-d). To persist NEW live changes automatically across Render Free
+#   restarts for $0, optionally set NEXA_BACKUP_GIST_TOKEN + NEXA_BACKUP_GIST_ID in Render Env,
+#   or tap "Download" / "Restore" anytime in NEXA Security -> Database Persistence on iPhone Safari.
+
+services:
+  - type: web
+    name: nexa-quant-intelligence
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    numInstances: 1
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: DISABLE_HMR
+        value: "true"
+      - key: NEXA_DATA_DIR
+        value: /app/data
+      - key: NEXA_DB_PATH
+        value: /app/data/nexa_genesis.sqlite3
+      - key: NEXA_PAID_FALLBACK_ALLOWED
+        value: "false"
+      - key: NEXA_LIVE_TRADING_ENABLED
+        value: "false"
+      - key: NEXA_EXTERNAL_COMMERCE_ENABLED
+        value: "false"
+      - key: NEXA_SESSION_SECRET
+        generateValue: true
+      - key: NEXA_SCHEDULER_TOKEN
+        generateValue: true
+      - key: NEXA_ADMIN_PASSWORD
+        sync: false
+      - key: GEMINI_API_KEY
+        value: ""
+      - key: OPENROUTER_API_KEY
+        value: ""
+      - key: GROQ_API_KEY
+        value: ""
+      - key: NVIDIA_API_KEY
+        value: ""
+      - key: NEXA_BACKUP_GIST_TOKEN
+        value: ""
+      - key: NEXA_BACKUP_GIST_ID
+        value: ""

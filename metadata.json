@@ -1,0 +1,6 @@
+{
+  "name": "NEXA QUANT INTELLIGENCE",
+  "description": "Autonomous Multi-AI, Multi-Agent, Quantitative Research, Software Engineering, and Commerce Intelligence Platform.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

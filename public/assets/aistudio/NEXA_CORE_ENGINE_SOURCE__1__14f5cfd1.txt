@@ -1,0 +1,4225 @@
+NEXA ORIGINAL CORE ENGINE SOURCE
+Selected cells from Untitled0.ipynb
+Secrets redacted. Original notebook unchanged.
+===========================================================================
+
+
+===========================================================================
+CELL 2 | 7031 characters
+===========================================================================
+
+# ============================================================
+# NEXA UNIVERSAL INTELLIGENCE v1.0
+# UNIFIED MASTER CORE — SINGLE CELL ARCHITECTURE
+# ============================================================
+
+import json
+import uuid
+from pathlib import Path
+from datetime import datetime, timezone
+
+# ---------------- SYSTEM CONFIGURATION ----------------
+
+NEXA_CONFIG = {
+    "name": "NEXA UNIVERSAL INTELLIGENCE",
+    "version": "1.0",
+    "model": "gemini-3.8-flash",
+    "agents": [
+        "SCIENTIST",
+        "INVENTOR",
+        "ENGINEER",
+        "CRITIC",
+        "STRATEGIST"
+    ],
+    "human_approval_required": True
+}
+
+NEXA_STORAGE = Path("/content/NEXA_MEMORY.json")
+NEXA_HISTORY = []
+
+# ---------------- ENVIRONMENT VALIDATION ----------------
+
+def validate_environment():
+
+    if "client" not in globals():
+        raise RuntimeError(
+            "Gemini client is missing. Run the successful API connection cell first."
+        )
+
+    if not hasattr(client, "models"):
+        raise RuntimeError("Gemini client is not configured correctly.")
+
+    return True
+
+
+# ---------------- MASTER INTELLIGENCE ENGINE ----------------
+
+def build_master_prompt(objective):
+
+    return f"""
+You are NEXA UNIVERSAL INTELLIGENCE v1.0.
+
+Your mission is to solve complex problems through rigorous
+multi-perspective reasoning, research planning, innovation
+and engineering.
+
+OBJECTIVE:
+{objective}
+
+Operate as five specialized analytical roles:
+
+1. SCIENTIST:
+Analyze evidence, facts, unknowns and research requirements.
+
+2. INVENTOR:
+Generate original approaches and competing solutions.
+
+3. ENGINEER:
+Design practical technical architecture and implementation.
+
+4. CRITIC:
+Challenge assumptions, detect weaknesses and identify risks.
+
+5. STRATEGIST:
+Compare alternatives, prioritize resources and select a strategy.
+
+UNIFIED ENGINES:
+
+A. MASTER BRAIN:
+Understand and decompose the objective.
+
+B. RESEARCH ENGINE:
+Identify evidence needed and reliable sources to investigate.
+Never claim external research was performed if it was not.
+
+C. INVENTION ENGINE:
+Generate and compare at least three approaches.
+
+D. ENGINEERING ENGINE:
+Design a practical implementation architecture.
+
+E. AGENT COUNCIL:
+Present the five specialized perspectives and their disagreements.
+
+F. VERIFICATION ENGINE:
+Define measurable tests, failure conditions and quality criteria.
+
+G. STRATEGY ENGINE:
+Choose the strongest approach and justify the decision.
+
+H. AUTONOMOUS OPERATIONS:
+Produce an ordered execution plan.
+Do not perform external actions or spend money.
+Human approval is mandatory.
+
+REQUIRED OUTPUT — ARABIC:
+
+1. فهم الهدف
+2. تحليل علمي
+3. خطة البحث والأدلة المطلوبة
+4. ثلاثة حلول مبتكرة
+5. التصميم الهندسي
+6. تقييم الوكلاء الخمسة
+7. النقد والمخاطر
+8. القرار الاستراتيجي
+9. خطة التنفيذ
+10. اختبارات التحقق
+11. الموارد والتكاليف والقيود
+12. النتيجة النهائية
+
+QUALITY RULES:
+
+- Be specific, logical and realistic.
+- Distinguish verified facts from assumptions.
+- Never invent sources, statistics or test results.
+- Explain technical limitations.
+- Prefer solutions that minimize cost without sacrificing quality.
+- Identify missing information.
+- Challenge your own conclusions.
+- Do not claim to have executed code or external operations.
+- Avoid generic recommendations.
+"""
+
+
+# ---------------- KNOWLEDGE VAULT ----------------
+
+def save_nexa_memory(record):
+
+    NEXA_HISTORY.append(record)
+
+    existing = []
+
+    if NEXA_STORAGE.exists():
+        try:
+            existing = json.loads(
+                NEXA_STORAGE.read_text(encoding="utf-8")
+            )
+        except Exception:
+            existing = []
+
+    existing.append(record)
+
+    NEXA_STORAGE.write_text(
+        json.dumps(existing, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+
+    return len(existing)
+
+
+# ---------------- VERIFICATION ENGINE ----------------
+
+def verify_nexa_output(result):
+
+    checks = {
+        "objective_present": bool(result.get("objective")),
+        "ai_response_present": bool(result.get("analysis")),
+        "response_has_content": (
+            len(result.get("analysis", "").strip()) > 500
+        ),
+        "human_approval_protected": (
+            result.get("human_approval_required") is True
+        )
+    }
+
+    return {
+        "passed": all(checks.values()),
+        "checks": checks
+    }
+
+
+# ---------------- UNIFIED EXECUTION ENGINE ----------------
+
+def NEXA_RUN(objective):
+
+    validate_environment()
+
+    if not isinstance(objective, str) or len(objective.strip()) < 10:
+        raise ValueError("Please enter a meaningful objective.")
+
+    objective = objective.strip()
+
+    task_id = str(uuid.uuid4())[:12]
+
+    print("\n🧠 NEXA MASTER CORE ACTIVATED")
+    print("Task:", task_id)
+    print("Analyzing all intelligence modules...")
+
+    prompt = build_master_prompt(objective)
+
+    # One real AI request coordinates all five roles.
+    response = client.models.generate_content(
+        model=NEXA_CONFIG["model"],
+        contents=prompt
+    )
+
+    analysis = response.text
+
+    if not analysis or not analysis.strip():
+        raise RuntimeError("The AI returned an empty response.")
+
+    result = {
+        "system": NEXA_CONFIG["name"],
+        "version": NEXA_CONFIG["version"],
+        "task_id": task_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "objective": objective,
+        "active_roles": NEXA_CONFIG["agents"],
+        "analysis": analysis,
+        "human_approval_required": True
+    }
+
+    result["verification"] = verify_nexa_output(result)
+
+    saved_count = save_nexa_memory(result)
+
+    print("\n" + "=" * 60)
+    print("NEXA UNIFIED INTELLIGENCE REPORT")
+    print("=" * 60)
+
+    print(result["analysis"])
+
+    print("\n" + "=" * 60)
+    print("SYSTEM VERIFICATION")
+    print(json.dumps(
+        result["verification"],
+        ensure_ascii=False,
+        indent=2
+    ))
+
+    print("Saved reports:", saved_count)
+    print("Memory file:", str(NEXA_STORAGE))
+    print("=" * 60)
+
+    return result
+
+
+# ---------------- AUTOMATIC SYSTEM SELF-TEST ----------------
+
+def NEXA_SELF_TEST():
+
+    tests = {
+        "configuration": bool(NEXA_CONFIG["agents"]),
+        "storage_path": NEXA_STORAGE.parent.exists(),
+        "verification_engine": callable(verify_nexa_output),
+        "master_prompt": callable(build_master_prompt),
+        "execution_engine": callable(NEXA_RUN),
+        "gemini_connection": validate_environment()
+    }
+
+    print("\nNEXA SYSTEM SELF-TEST")
+    print(json.dumps(tests, indent=2, ensure_ascii=False))
+
+    if not all(tests.values()):
+        raise RuntimeError("NEXA self-test failed.")
+
+    print("\nALL LOCAL SYSTEM TESTS PASSED")
+    return True
+
+
+# ---------------- START NEXA ----------------
+
+NEXA_SELF_TEST()
+
+MISSION = (
+    "Design a technically realistic and powerful universal "
+    "multi-agent intelligence system that can research, "
+    "discover opportunities, invent and engineer solutions "
+    "with zero initial budget."
+)
+
+NEXA_FINAL_RESULT = NEXA_RUN(MISSION)
+
+print("\n🚀 NEXA v1.0 EXECUTION COMPLETED")
+
+
+
+===========================================================================
+CELL 3 | 7747 characters
+===========================================================================
+
+# ============================================================
+# NEXA UNIVERSAL INTELLIGENCE v1.1
+# Multi-Agent Council | Critic | Synthesis | Memory | Tests
+# ============================================================
+
+import os, json, time
+from pathlib import Path
+from datetime import datetime, timezone
+from getpass import getpass
+
+# ---------- 1. CONFIGURATION ----------
+
+NEXA_CONFIG = {
+    "name": "NEXA UNIVERSAL INTELLIGENCE",
+    "version": "1.1",
+    "model": "gemini-3.8-flash",
+    "agents": [
+        "SCIENTIST",
+        "RESEARCHER",
+        "INVENTOR",
+        "ENGINEER",
+        "STRATEGIST",
+        "CRITICAL_REVIEWER"
+    ],
+    "max_standard_calls": 2
+}
+
+NEXA_MEMORY_FILE = Path("/content/NEXA_MEMORY.jsonl")
+
+# ---------- 2. CONNECT TO GEMINI ----------
+
+try:
+    client
+    print("Gemini connection: EXISTING CLIENT FOUND")
+except NameError:
+    from google import genai
+    api_key=[REDACTED]"Enter Gemini API key (hidden): ")
+    client = genai.Client(api_key=[REDACTED]
+    del api_key
+    print("Gemini connection: INITIALIZED")
+
+# ---------- 3. MEMORY ----------
+
+def nexa_save(record):
+    record["saved_at"] = datetime.now(timezone.utc).isoformat()
+    with open(NEXA_MEMORY_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+def nexa_load(limit=10):
+    if not NEXA_MEMORY_FILE.exists():
+        return []
+    records = []
+    with open(NEXA_MEMORY_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            try:
+                records.append(json.loads(line))
+            except Exception:
+                continue
+    return records[-limit:]
+
+# ---------- 4. ENVIRONMENT CHECK ----------
+
+def NEXA_STATUS():
+    return {
+        "system": NEXA_CONFIG["name"],
+        "version": NEXA_CONFIG["version"],
+        "model": NEXA_CONFIG["model"],
+        "connected_provider": "Google Gemini",
+        "available_agents": NEXA_CONFIG["agents"],
+        "memory_file": str(NEXA_MEMORY_FILE),
+        "memory_records": len(nexa_load(100000)),
+        "external_providers": {
+            "OpenAI": "NOT_CONFIGURED",
+            "Anthropic": "NOT_CONFIGURED",
+            "DeepSeek": "NOT_CONFIGURED",
+            "Qwen": "NOT_CONFIGURED",
+            "Kimi": "NOT_CONFIGURED"
+        }
+    }
+
+# ---------- 5. AI CALL ----------
+
+def nexa_ai(prompt):
+    response = client.models.generate_content(
+        model=NEXA_CONFIG["model"],
+        contents=prompt
+    )
+    result = getattr(response, "text", None)
+    if not result or not result.strip():
+        raise RuntimeError("The AI returned an empty response.")
+    return result.strip()
+
+# ---------- 6. MULTI-AGENT COUNCIL ----------
+
+def nexa_council(objective, context=""):
+    prompt = f"""
+You are the coordination engine of NEXA, a rigorous multi-agent
+intelligence architecture.
+
+MAIN OBJECTIVE:
+{objective}
+
+RELEVANT PREVIOUS CONTEXT:
+{context if context else "No previous context."}
+
+Run a structured council with these specialized roles:
+
+1. SCIENTIST:
+Analyze the problem using evidence, logic and scientific reasoning.
+
+2. RESEARCHER:
+Identify what information is missing, what must be researched,
+and distinguish known facts from assumptions.
+Do not pretend that live web research was performed.
+
+3. INVENTOR:
+Develop three genuinely different possible solutions.
+Avoid superficial variations.
+
+4. ENGINEER:
+Evaluate technical feasibility, architecture, resources,
+dependencies, risks and implementation.
+
+5. STRATEGIST:
+Identify the highest-value path, constraints, priorities
+and realistic next actions.
+
+6. CRITICAL REVIEWER:
+Challenge weak assumptions, identify contradictions,
+failure modes and unsupported claims.
+
+REQUIREMENTS:
+- Be precise and intellectually honest.
+- Do not invent facts, sources, tests or results.
+- Distinguish FACT, ASSUMPTION and PROPOSAL.
+- Optimize for quality and practical results.
+- Consider zero-budget constraints when relevant.
+- Explain what cannot currently be done.
+- Make the output actionable.
+
+Return a clearly structured report with each agent's analysis,
+a comparison of the proposed solutions, unresolved questions,
+and a preliminary recommendation.
+"""
+    return nexa_ai(prompt)
+
+# ---------- 7. ADVERSARIAL REVIEW + IMPROVEMENT ----------
+
+def nexa_review(objective, council_result):
+    prompt = f"""
+You are the independent quality-control stage of NEXA.
+
+OBJECTIVE:
+{objective}
+
+COUNCIL REPORT:
+{council_result}
+
+Your task:
+1. Find factual, logical and technical weaknesses.
+2. Identify unsupported claims and hidden assumptions.
+3. Check feasibility, cost, dependencies and risks.
+4. Reject unrealistic or unsafe recommendations.
+5. Improve the strongest proposal.
+6. Give a concrete verification plan.
+7. Produce the final improved answer.
+
+Never claim that you browsed the internet, executed code,
+contacted services or verified external facts unless that
+actually happened.
+
+Use this final structure:
+
+A. FINAL RECOMMENDATION
+B. WHY THIS IS THE BEST OPTION
+C. TECHNICAL DESIGN
+D. EXECUTION PLAN
+E. RISKS AND LIMITATIONS
+F. FACTS THAT STILL NEED EXTERNAL VERIFICATION
+G. SUCCESS METRICS
+H. NEXT ACTION
+
+Be critical, specific and practical.
+"""
+    return nexa_ai(prompt)
+
+# ---------- 8. MAIN INTELLIGENCE ENGINE ----------
+
+def NEXA_RUN(objective, depth="standard"):
+    if not isinstance(objective, str) or len(objective.strip()) < 5:
+        raise ValueError("Please provide a meaningful objective.")
+
+    objective = objective.strip()
+    start = time.time()
+
+    print("\n" + "=" * 65)
+    print("NEXA UNIVERSAL INTELLIGENCE v1.1")
+    print("=" * 65)
+    print("Objective:", objective)
+    print("\n[1/3] Loading relevant memory...")
+
+    previous = nexa_load(3)
+    context = "\n".join(
+        str(item.get("objective", "")) + "\n" +
+        str(item.get("summary", ""))[:1000]
+        for item in previous
+    )
+
+    print("[2/3] Convening specialized agent council...")
+    council = nexa_council(objective, context)
+
+    print("[3/3] Critical review and improvement...")
+    review = nexa_review(objective, council)
+
+    record = {
+        "objective": objective,
+        "summary": review[:5000],
+        "council": council,
+        "review": review,
+        "model": NEXA_CONFIG["model"],
+        "verification": "AI review performed; external facts not independently verified"
+    }
+    nexa_save(record)
+
+    elapsed = round(time.time() - start, 2)
+
+    print("\n" + "=" * 65)
+    print("NEXA FINAL INTELLIGENCE REPORT")
+    print("=" * 65)
+    print(review)
+    print("\n" + "=" * 65)
+    print("EXECUTION COMPLETE")
+    print("Elapsed seconds:", elapsed)
+    print("API calls: 2")
+    print("Memory: SAVED")
+    print("External code execution: NOT PERFORMED")
+    print("Live web research: NOT PERFORMED")
+    print("=" * 65)
+
+    return record
+
+# ---------- 9. LOCAL SELF-TESTS ----------
+
+def NEXA_SELF_TEST():
+    tests = {
+        "Configuration": NEXA_CONFIG["version"] == "1.1",
+        "Agent council": len(NEXA_CONFIG["agents"]) >= 5,
+        "Memory functions": callable(nexa_save) and callable(nexa_load),
+        "AI interface": callable(nexa_ai),
+        "Main engine": callable(NEXA_RUN),
+        "Review engine": callable(nexa_review)
+    }
+
+    print("\nNEXA LOCAL SYSTEM TEST")
+    for name, passed in tests.items():
+        print(("PASS" if passed else "FAIL"), "-", name)
+
+    print("RESULT:", sum(tests.values()), "/", len(tests))
+    return all(tests.values())
+
+# ---------- 10. INITIALIZE ----------
+
+print("\nNEXA v1.1 INITIALIZING...")
+assert NEXA_SELF_TEST(), "A local system test failed."
+print("\nSYSTEM STATUS:")
+print(json.dumps(NEXA_STATUS(), indent=2, ensure_ascii=False))
+
+print("\nNEXA v1.1 READY.")
+print("To give NEXA a mission, use:")
+print('NEXA_RUN("Write your objective here")')
+
+
+
+===========================================================================
+CELL 7 | 7747 characters
+===========================================================================
+
+# ============================================================
+# NEXA UNIVERSAL INTELLIGENCE v1.1
+# Multi-Agent Council | Critic | Synthesis | Memory | Tests
+# ============================================================
+
+import os, json, time
+from pathlib import Path
+from datetime import datetime, timezone
+from getpass import getpass
+
+# ---------- 1. CONFIGURATION ----------
+
+NEXA_CONFIG = {
+    "name": "NEXA UNIVERSAL INTELLIGENCE",
+    "version": "1.1",
+    "model": "gemini-3.8-flash",
+    "agents": [
+        "SCIENTIST",
+        "RESEARCHER",
+        "INVENTOR",
+        "ENGINEER",
+        "STRATEGIST",
+        "CRITICAL_REVIEWER"
+    ],
+    "max_standard_calls": 2
+}
+
+NEXA_MEMORY_FILE = Path("/content/NEXA_MEMORY.jsonl")
+
+# ---------- 2. CONNECT TO GEMINI ----------
+
+try:
+    client
+    print("Gemini connection: EXISTING CLIENT FOUND")
+except NameError:
+    from google import genai
+    api_key=[REDACTED]"Enter Gemini API key (hidden): ")
+    client = genai.Client(api_key=[REDACTED]
+    del api_key
+    print("Gemini connection: INITIALIZED")
+
+# ---------- 3. MEMORY ----------
+
+def nexa_save(record):
+    record["saved_at"] = datetime.now(timezone.utc).isoformat()
+    with open(NEXA_MEMORY_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+def nexa_load(limit=10):
+    if not NEXA_MEMORY_FILE.exists():
+        return []
+    records = []
+    with open(NEXA_MEMORY_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            try:
+                records.append(json.loads(line))
+            except Exception:
+                continue
+    return records[-limit:]
+
+# ---------- 4. ENVIRONMENT CHECK ----------
+
+def NEXA_STATUS():
+    return {
+        "system": NEXA_CONFIG["name"],
+        "version": NEXA_CONFIG["version"],
+        "model": NEXA_CONFIG["model"],
+        "connected_provider": "Google Gemini",
+        "available_agents": NEXA_CONFIG["agents"],
+        "memory_file": str(NEXA_MEMORY_FILE),
+        "memory_records": len(nexa_load(100000)),
+        "external_providers": {
+            "OpenAI": "NOT_CONFIGURED",
+            "Anthropic": "NOT_CONFIGURED",
+            "DeepSeek": "NOT_CONFIGURED",
+            "Qwen": "NOT_CONFIGURED",
+            "Kimi": "NOT_CONFIGURED"
+        }
+    }
+
+# ---------- 5. AI CALL ----------
+
+def nexa_ai(prompt):
+    response = client.models.generate_content(
+        model=NEXA_CONFIG["model"],
+        contents=prompt
+    )
+    result = getattr(response, "text", None)
+    if not result or not result.strip():
+        raise RuntimeError("The AI returned an empty response.")
+    return result.strip()
+
+# ---------- 6. MULTI-AGENT COUNCIL ----------
+
+def nexa_council(objective, context=""):
+    prompt = f"""
+You are the coordination engine of NEXA, a rigorous multi-agent
+intelligence architecture.
+
+MAIN OBJECTIVE:
+{objective}
+
+RELEVANT PREVIOUS CONTEXT:
+{context if context else "No previous context."}
+
+Run a structured council with these specialized roles:
+
+1. SCIENTIST:
+Analyze the problem using evidence, logic and scientific reasoning.
+
+2. RESEARCHER:
+Identify what information is missing, what must be researched,
+and distinguish known facts from assumptions.
+Do not pretend that live web research was performed.
+
+3. INVENTOR:
+Develop three genuinely different possible solutions.
+Avoid superficial variations.
+
+4. ENGINEER:
+Evaluate technical feasibility, architecture, resources,
+dependencies, risks and implementation.
+
+5. STRATEGIST:
+Identify the highest-value path, constraints, priorities
+and realistic next actions.
+
+6. CRITICAL REVIEWER:
+Challenge weak assumptions, identify contradictions,
+failure modes and unsupported claims.
+
+REQUIREMENTS:
+- Be precise and intellectually honest.
+- Do not invent facts, sources, tests or results.
+- Distinguish FACT, ASSUMPTION and PROPOSAL.
+- Optimize for quality and practical results.
+- Consider zero-budget constraints when relevant.
+- Explain what cannot currently be done.
+- Make the output actionable.
+
+Return a clearly structured report with each agent's analysis,
+a comparison of the proposed solutions, unresolved questions,
+and a preliminary recommendation.
+"""
+    return nexa_ai(prompt)
+
+# ---------- 7. ADVERSARIAL REVIEW + IMPROVEMENT ----------
+
+def nexa_review(objective, council_result):
+    prompt = f"""
+You are the independent quality-control stage of NEXA.
+
+OBJECTIVE:
+{objective}
+
+COUNCIL REPORT:
+{council_result}
+
+Your task:
+1. Find factual, logical and technical weaknesses.
+2. Identify unsupported claims and hidden assumptions.
+3. Check feasibility, cost, dependencies and risks.
+4. Reject unrealistic or unsafe recommendations.
+5. Improve the strongest proposal.
+6. Give a concrete verification plan.
+7. Produce the final improved answer.
+
+Never claim that you browsed the internet, executed code,
+contacted services or verified external facts unless that
+actually happened.
+
+Use this final structure:
+
+A. FINAL RECOMMENDATION
+B. WHY THIS IS THE BEST OPTION
+C. TECHNICAL DESIGN
+D. EXECUTION PLAN
+E. RISKS AND LIMITATIONS
+F. FACTS THAT STILL NEED EXTERNAL VERIFICATION
+G. SUCCESS METRICS
+H. NEXT ACTION
+
+Be critical, specific and practical.
+"""
+    return nexa_ai(prompt)
+
+# ---------- 8. MAIN INTELLIGENCE ENGINE ----------
+
+def NEXA_RUN(objective, depth="standard"):
+    if not isinstance(objective, str) or len(objective.strip()) < 5:
+        raise ValueError("Please provide a meaningful objective.")
+
+    objective = objective.strip()
+    start = time.time()
+
+    print("\n" + "=" * 65)
+    print("NEXA UNIVERSAL INTELLIGENCE v1.1")
+    print("=" * 65)
+    print("Objective:", objective)
+    print("\n[1/3] Loading relevant memory...")
+
+    previous = nexa_load(3)
+    context = "\n".join(
+        str(item.get("objective", "")) + "\n" +
+        str(item.get("summary", ""))[:1000]
+        for item in previous
+    )
+
+    print("[2/3] Convening specialized agent council...")
+    council = nexa_council(objective, context)
+
+    print("[3/3] Critical review and improvement...")
+    review = nexa_review(objective, council)
+
+    record = {
+        "objective": objective,
+        "summary": review[:5000],
+        "council": council,
+        "review": review,
+        "model": NEXA_CONFIG["model"],
+        "verification": "AI review performed; external facts not independently verified"
+    }
+    nexa_save(record)
+
+    elapsed = round(time.time() - start, 2)
+
+    print("\n" + "=" * 65)
+    print("NEXA FINAL INTELLIGENCE REPORT")
+    print("=" * 65)
+    print(review)
+    print("\n" + "=" * 65)
+    print("EXECUTION COMPLETE")
+    print("Elapsed seconds:", elapsed)
+    print("API calls: 2")
+    print("Memory: SAVED")
+    print("External code execution: NOT PERFORMED")
+    print("Live web research: NOT PERFORMED")
+    print("=" * 65)
+
+    return record
+
+# ---------- 9. LOCAL SELF-TESTS ----------
+
+def NEXA_SELF_TEST():
+    tests = {
+        "Configuration": NEXA_CONFIG["version"] == "1.1",
+        "Agent council": len(NEXA_CONFIG["agents"]) >= 5,
+        "Memory functions": callable(nexa_save) and callable(nexa_load),
+        "AI interface": callable(nexa_ai),
+        "Main engine": callable(NEXA_RUN),
+        "Review engine": callable(nexa_review)
+    }
+
+    print("\nNEXA LOCAL SYSTEM TEST")
+    for name, passed in tests.items():
+        print(("PASS" if passed else "FAIL"), "-", name)
+
+    print("RESULT:", sum(tests.values()), "/", len(tests))
+    return all(tests.values())
+
+# ---------- 10. INITIALIZE ----------
+
+print("\nNEXA v1.1 INITIALIZING...")
+assert NEXA_SELF_TEST(), "A local system test failed."
+print("\nSYSTEM STATUS:")
+print(json.dumps(NEXA_STATUS(), indent=2, ensure_ascii=False))
+
+print("\nNEXA v1.1 READY.")
+print("To give NEXA a mission, use:")
+print('NEXA_RUN("Write your objective here")')
+
+
+
+===========================================================================
+CELL 14 | 1698 characters
+===========================================================================
+
+# NEXA TASK ORCHESTRATOR v0.2
+# Task planning + verification + memory
+
+from datetime import datetime, timezone
+import uuid
+import json
+
+NEXA_MEMORY = []
+
+def create_task(objective):
+    if not isinstance(objective, str) or not objective.strip():
+        raise ValueError("Task objective cannot be empty")
+
+    task = {
+        "id": str(uuid.uuid4())[:8],
+        "objective": objective.strip(),
+        "status": "PLANNED",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "steps": [
+            {"name": "RESEARCH", "status": "PENDING"},
+            {"name": "ANALYSIS", "status": "PENDING"},
+            {"name": "DESIGN", "status": "PENDING"},
+            {"name": "ENGINEERING", "status": "PENDING"},
+            {"name": "TESTING", "status": "PENDING"},
+            {"name": "FINAL_REPORT", "status": "PENDING"}
+        ],
+        "approval_required": True
+    }
+
+    return task
+
+
+def verify_task(task):
+    checks = {
+        "has_objective": bool(task.get("objective")),
+        "has_steps": len(task.get("steps", [])) > 0,
+        "approval_protected": task.get("approval_required") is True
+    }
+
+    return {
+        "passed": all(checks.values()),
+        "checks": checks
+    }
+
+
+def launch_nexa(objective):
+    task = create_task(objective)
+    verification = verify_task(task)
+
+    if verification["passed"]:
+        NEXA_MEMORY.append(task)
+
+    print("NEXA TASK CREATED")
+    print(json.dumps(task, indent=2, ensure_ascii=False))
+    print("\nVERIFICATION:")
+    print(json.dumps(verification, indent=2))
+
+    return task
+
+
+# First test
+test_task = launch_nexa(
+    "Design and build a powerful intelligent AI system"
+)
+
+print("\nNEXA ORCHESTRATOR: ONLINE")
+
+
+
+===========================================================================
+CELL 15 | 1529 characters
+===========================================================================
+
+# NEXA COUNCIL DEBATE v0.4
+
+import json
+
+def council_debate(task, report):
+
+    reviews = report["reviews"]
+
+    debate = {
+        "task_id": task["id"],
+        "rounds": []
+    }
+
+    # Round 1: identify disagreements and missing information
+    debate["rounds"].append({
+        "round": 1,
+        "scientist_to_engineer":
+            "What evidence supports the proposed technical architecture?",
+        "engineer_to_scientist":
+            "Which research findings can be converted into testable requirements?",
+        "critic_to_inventor":
+            "How can we verify that an idea is genuinely new and useful?",
+        "strategist_to_all":
+            "Which first milestone provides the most value with the least resources?"
+    })
+
+    # Round 2: establish measurable requirements
+    requirements = [
+        "Define measurable success criteria",
+        "Identify required data and tools",
+        "Estimate technical complexity",
+        "Identify failure conditions",
+        "Design a testable prototype"
+    ]
+
+    debate["rounds"].append({
+        "round": 2,
+        "requirements": requirements
+    })
+
+    # Final synthesis
+    debate["decision"] = {
+        "status": "NEEDS_RESEARCH",
+        "priority": "BUILD_A_TESTABLE_PROTOTYPE",
+        "requirements": requirements,
+        "human_approval_required": True
+    }
+
+    return debate
+
+
+debate_result = council_debate(test_task, council_report)
+
+print("NEXA COUNCIL DEBATE COMPLETE")
+print(json.dumps(debate_result, indent=2, ensure_ascii=False))
+
+
+
+===========================================================================
+CELL 16 | 1713 characters
+===========================================================================
+
+# NEXA MASTER BRAIN v0.5
+# Adaptive task analysis and planning
+
+import json
+
+def master_brain(objective):
+
+    if not isinstance(objective, str) or len(objective.strip()) < 10:
+        raise ValueError("Please provide a meaningful objective.")
+
+    objective = objective.strip()
+
+    words = objective.split()
+
+    plan = {
+        "mission": objective,
+        "analysis": {
+            "word_count": len(words),
+            "complexity": (
+                "HIGH" if len(words) > 15
+                else "MEDIUM" if len(words) > 7
+                else "LOW"
+            )
+        },
+        "execution_plan": [
+            {
+                "phase": "DISCOVERY",
+                "action": "Identify the problem and available evidence."
+            },
+            {
+                "phase": "RESEARCH",
+                "action": "Find reliable information and alternatives."
+            },
+            {
+                "phase": "INNOVATION",
+                "action": "Generate and compare possible solutions."
+            },
+            {
+                "phase": "ENGINEERING",
+                "action": "Design a practical prototype."
+            },
+            {
+                "phase": "VALIDATION",
+                "action": "Test results and identify weaknesses."
+            }
+        ],
+        "safety": {
+            "external_actions_allowed": False,
+            "human_approval_required": True
+        }
+    }
+
+    return plan
+
+
+# Test with a new mission
+master_plan = master_brain(
+    "Build an intelligent system that discovers valuable business opportunities and develops practical solutions."
+)
+
+print("NEXA MASTER BRAIN: ONLINE")
+print(json.dumps(master_plan, indent=2, ensure_ascii=False))
+
+
+
+===========================================================================
+CELL 17 | 3645 characters
+===========================================================================
+
+# ==================================================
+# NEXA UNIVERSAL INTELLIGENCE - INTEGRATED CORE v0.6
+# Unified orchestration + agent council + verification
+# ==================================================
+
+import json
+import uuid
+from datetime import datetime, timezone
+
+NEXA_VERSION = "0.6"
+
+AGENTS = {
+    "SCIENTIST": "Research and evidence",
+    "INVENTOR": "Innovation and alternatives",
+    "ENGINEER": "Technical feasibility",
+    "CRITIC": "Risks and weaknesses",
+    "STRATEGIST": "Priorities and resources"
+}
+
+def analyze_objective(objective):
+    words = objective.split()
+
+    return {
+        "word_count": len(words),
+        "complexity": (
+            "HIGH" if len(words) > 15
+            else "MEDIUM" if len(words) > 7
+            else "LOW"
+        )
+    }
+
+def create_plan(objective):
+    phases = [
+        ("DISCOVERY", "Define the problem and desired outcome"),
+        ("RESEARCH", "Collect reliable evidence and alternatives"),
+        ("ANALYSIS", "Compare findings and identify opportunities"),
+        ("INNOVATION", "Generate and evaluate possible solutions"),
+        ("ENGINEERING", "Design a practical prototype"),
+        ("VALIDATION", "Test results and identify weaknesses"),
+        ("FINAL_REPORT", "Document findings and recommendations")
+    ]
+
+    return [
+        {"phase": name, "action": action, "status": "PENDING"}
+        for name, action in phases
+    ]
+
+def run_agent_council(objective):
+    return {
+        "SCIENTIST": "Identify evidence needed for: " + objective,
+        "INVENTOR": "Explore original approaches to: " + objective,
+        "ENGINEER": "Identify technical requirements for: " + objective,
+        "CRITIC": "Find assumptions and risks in: " + objective,
+        "STRATEGIST": "Prioritize the first milestone for: " + objective
+    }
+
+def verify_result(result):
+    checks = {
+        "objective_exists": bool(result.get("objective")),
+        "plan_has_phases": len(result.get("plan", [])) >= 5,
+        "all_agents_present": len(result.get("council", {})) == 5,
+        "human_approval_required": (
+            result.get("human_approval_required") is True
+        )
+    }
+
+    return {
+        "passed": all(checks.values()),
+        "checks": checks
+    }
+
+def NEXA_CORE(objective):
+    if not isinstance(objective, str) or len(objective.strip()) < 10:
+        raise ValueError("Please enter a meaningful objective.")
+
+    objective = objective.strip()
+
+    result = {
+        "system": "NEXA UNIVERSAL INTELLIGENCE",
+        "version": NEXA_VERSION,
+        "task_id": str(uuid.uuid4())[:8],
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "objective": objective,
+        "analysis": analyze_objective(objective),
+        "plan": create_plan(objective),
+        "council": run_agent_council(objective),
+        "human_approval_required": True
+    }
+
+    result["verification"] = verify_result(result)
+
+    return result
+
+# Three different test missions
+TEST_MISSIONS = [
+    "Develop an intelligent AI research assistant.",
+    "Discover profitable and realistic business opportunities.",
+    "Design a multi-agent system that builds and tests software."
+]
+
+NEXA_TEST_RESULTS = []
+
+for mission in TEST_MISSIONS:
+    output = NEXA_CORE(mission)
+    NEXA_TEST_RESULTS.append(output)
+
+    print("\nMISSION:", mission)
+    print("VERIFICATION:", output["verification"]["passed"])
+
+print("\n================================")
+print("NEXA INTEGRATED CORE:", NEXA_VERSION)
+print("TESTS PASSED:",
+      sum(x["verification"][ho"passed"] for x in NEXA_TEST_RESULTS),
+      "/",
+      len(NEXA_TEST_RESULTS))
+print("================================")
+
+
+
+===========================================================================
+CELL 19 | 10147 characters
+===========================================================================
+
+# ================================================================
+# NEXA META-CORE v1.2
+# Parallel Intelligence | Critical Synthesis | Persistent Memory
+# ================================================================
+
+import asyncio
+import json
+import uuid
+import time
+import hashlib
+from pathlib import Path
+from datetime import datetime, timezone
+
+# -------------------- CONFIG --------------------
+
+NEXA = {
+    "name": "NEXA UNIVERSAL INTELLIGENCE",
+    "version": "1.2",
+    "model": "gemini-3.8-flash",
+    "parallel_agents": 3,
+    "max_output_tokens": 1800,
+    "memory_path": "/content/NEXA_META_MEMORY.jsonl",
+    "minimum_successful_agents": 2
+}
+
+MEMORY_PATH = Path(NEXA["memory_path"])
+
+# -------------------- CONNECTION CHECK --------------------
+
+if "client" not in globals():
+    raise RuntimeError(
+        "Gemini client not found. Run your successful Gemini connection cell first."
+    )
+
+if not hasattr(client, "aio"):
+    raise RuntimeError(
+        "Async Gemini client unavailable. Check the installed SDK."
+    )
+
+# -------------------- MEMORY ENGINE --------------------
+
+def nexa_memory_read(limit=10):
+    if not MEMORY_PATH.exists():
+        return []
+
+    records = []
+    with MEMORY_PATH.open("r", encoding="utf-8") as file:
+        for line in file:
+            try:
+                records.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+
+    return records[-limit:]
+
+
+def nexa_memory_write(record):
+    record["saved_at"] = datetime.now(timezone.utc).isoformat()
+
+    with MEMORY_PATH.open("a", encoding="utf-8") as file:
+        file.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+# -------------------- AGENT DEFINITIONS --------------------
+
+AGENTS = {
+    "SCIENTIST_RESEARCHER": """
+You are the scientific and research intelligence agent.
+Analyze the objective, identify evidence requirements,
+distinguish established facts from assumptions,
+identify missing information and research methods.
+Never pretend to have performed live web research.
+""",
+
+    "INVENTOR_ENGINEER": """
+You are the invention and engineering intelligence agent.
+Develop original but technically realistic approaches.
+Compare architectures, algorithms, tools, dependencies,
+costs, complexity, scalability and implementation risks.
+Prefer solutions that can actually be built and tested.
+""",
+
+    "CRITICAL_STRATEGIST": """
+You are the adversarial critic and strategic intelligence agent.
+Challenge weak assumptions, identify contradictions,
+failure modes, hidden costs and security risks.
+Compare possible paths and identify the highest-value
+first milestone. Do not accept unsupported claims.
+"""
+}
+
+# -------------------- AI REQUEST ENGINE --------------------
+
+async def nexa_request(prompt):
+    response = await client.aio.models.generate_content(
+        model=NEXA["model"],
+        contents=prompt
+    )
+
+    result = getattr(response, "text", None)
+
+    if not result or not result.strip():
+        raise RuntimeError("Empty AI response")
+
+    return result.strip()
+
+
+# -------------------- PARALLEL COUNCIL --------------------
+
+async def nexa_parallel_council(objective, context):
+    async def run_agent(name, instructions):
+        prompt = f"""
+NEXA MISSION:
+{objective}
+
+PREVIOUS CONTEXT:
+{context or "No relevant previous memory."}
+
+YOUR SPECIALIZED ROLE:
+{instructions}
+
+Produce a precise, structured analysis.
+Label facts, assumptions, proposals and unknowns.
+Do not invent sources, tests or external research.
+"""
+        try:
+            result = await nexa_request(prompt)
+            return {
+                "agent": name,
+                "status": "SUCCESS",
+                "result": result
+            }
+        except Exception as error:
+            return {
+                "agent": name,
+                "status": "FAILED",
+                "error": str(error)[:500]
+            }
+
+    tasks = [
+        run_agent(name, instructions)
+        for name, instructions in AGENTS.items()
+    ]
+
+    return await asyncio.gather(*tasks)
+
+
+# -------------------- SYNTHESIS ENGINE --------------------
+
+async def nexa_synthesize(objective, council):
+    successful = [
+        item for item in council
+        if item["status"] == "SUCCESS"
+    ]
+
+    if len(successful) < NEXA["minimum_successful_agents"]:
+        raise RuntimeError(
+            "Not enough successful agents. "
+            "No final report was accepted."
+        )
+
+    council_text = json.dumps(
+        successful,
+        ensure_ascii=False,
+        indent=2
+    )
+
+    prompt = f"""
+You are NEXA META-CORE, the final intelligence coordinator.
+
+MISSION:
+{objective}
+
+INDEPENDENT AGENT REPORTS:
+{council_text}
+
+YOUR RESPONSIBILITIES:
+1. Compare the independent analyses.
+2. Identify agreement and disagreement.
+3. Detect unsupported assumptions and errors.
+4. Reject unrealistic or technically impossible proposals.
+5. Select the strongest solution and explain why.
+6. Improve the solution using the agents' findings.
+7. Define measurable validation tests.
+8. Identify what still requires external verification.
+
+IMPORTANT:
+- The agents use the same underlying Gemini model.
+- Their roles are separate, but they are not independent providers.
+- No live web research has been performed by this system.
+- Do not claim that code was executed or tested externally.
+- Never invent sources, measurements or success rates.
+- Prefer factual accuracy over impressive language.
+
+OUTPUT:
+A. Executive decision
+B. Analysis and evidence
+C. Best proposed architecture
+D. Engineering and implementation
+E. Risks and weaknesses
+F. Validation tests and success metrics
+G. Missing external information
+H. Next highest-value action
+
+Be rigorous, specific and practical.
+"""
+
+    return await nexa_request(prompt)
+
+
+# -------------------- QUALITY CONTROL --------------------
+
+def nexa_validate_report(objective, report, council):
+    successful = sum(
+        item["status"] == "SUCCESS"
+        for item in council
+    )
+
+    checks = {
+        "objective_valid": len(objective.strip()) >= 10,
+        "report_nonempty": bool(report and report.strip()),
+        "report_minimum_length": len(report) >= 300,
+        "minimum_agents_succeeded":
+            successful >= NEXA["minimum_successful_agents"],
+        "agent_outputs_present": successful > 0
+    }
+
+    return {
+        "passed": all(checks.values()),
+        "checks": checks,
+        "successful_agents": successful,
+        "total_agents": len(council),
+        "note": "Structural checks only; factual correctness needs evidence."
+    }
+
+
+# -------------------- MAIN META-CORE --------------------
+
+async def NEXA_RUN(objective):
+    if not isinstance(objective, str) or len(objective.strip()) < 10:
+        raise ValueError("Enter a meaningful mission.")
+
+    objective = objective.strip()
+    task_id = str(uuid.uuid4())[:12]
+    start = time.perf_counter()
+
+    print("\n" + "=" * 68)
+    print("NEXA META-CORE v1.2")
+    print("MISSION:", objective)
+    print("=" * 68)
+
+    previous = nexa_memory_read(3)
+
+    context = "\n".join(
+        str(item.get("objective", "")) + "\n" +
+        str(item.get("summary", ""))[:1200]
+        for item in previous
+    )
+
+    print("\n[1] Launching parallel intelligence agents...")
+
+    council = await nexa_parallel_council(
+        objective,
+        context
+    )
+
+    for item in council:
+        print(
+            item["agent"],
+            "=>",
+            item["status"]
+        )
+
+    print("\n[2] Running critical synthesis...")
+
+    report = await nexa_synthesize(
+        objective,
+        council
+    )
+
+    print("\n[3] Validating final report...")
+
+    validation = nexa_validate_report(
+        objective,
+        report,
+        council
+    )
+
+    if not validation["passed"]:
+        raise RuntimeError(
+            "Report failed validation: " +
+            json.dumps(validation, ensure_ascii=False)
+        )
+
+    elapsed = round(time.perf_counter() - start, 2)
+
+    record = {
+        "task_id": task_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "objective": objective,
+        "model": NEXA["model"],
+        "agents": council,
+        "summary": report[:6000],
+        "validation": validation,
+        "elapsed_seconds": elapsed,
+        "api_calls": len(council) + 1
+    }
+
+    nexa_memory_write(record)
+
+    print("\n" + "=" * 68)
+    print("NEXA FINAL INTELLIGENCE REPORT")
+    print("=" * 68)
+    print(report)
+
+    print("\n" + "=" * 68)
+    print("QUALITY CONTROL")
+    print(json.dumps(validation, indent=2, ensure_ascii=False))
+    print("API CALLS:", record["api_calls"])
+    print("EXECUTION TIME:", elapsed, "seconds")
+    print("MEMORY: SAVED LOCALLY")
+    print("=" * 68)
+
+    return record
+
+
+# -------------------- LOCAL SELF-TESTS --------------------
+
+def NEXA_SELF_TEST():
+    tests = {
+        "Configuration": NEXA["version"] == "1.2",
+        "Three specialized agents": len(AGENTS) == 3,
+        "Parallel execution": asyncio.iscoroutinefunction(
+            nexa_parallel_council
+        ),
+        "Synthesis engine": asyncio.iscoroutinefunction(
+            nexa_synthesize
+        ),
+        "Memory read": callable(nexa_memory_read),
+        "Memory write": callable(nexa_memory_write),
+        "Validation engine": callable(nexa_validate_report),
+        "Main engine": asyncio.iscoroutinefunction(NEXA_RUN)
+    }
+
+    print("\nNEXA LOCAL TESTS")
+    for name, passed in tests.items():
+        print(("PASS" if passed else "FAIL"), "-", name)
+
+    print("RESULT:", sum(tests.values()), "/", len(tests))
+    return all(tests.values())
+
+
+# -------------------- INITIALIZATION --------------------
+
+print("\nINITIALIZING NEXA META-CORE...")
+
+assert NEXA_SELF_TEST(), "Local system tests failed."
+
+print("\nSYSTEM CONFIGURATION")
+print(json.dumps({
+    "version": NEXA["version"],
+    "model": NEXA["model"],
+    "agents": list(AGENTS.keys()),
+    "parallel": True,
+    "memory": str(MEMORY_PATH),
+    "gemini_connection": "EXISTING CLIENT"
+}, indent=2, ensure_ascii=False))
+
+print("\nNEXA META-CORE v1.2 READY")
+print("No API calls were used by local initialization.")
+print("Use: await NEXA_RUN('Your mission here')")
+
+
+
+===========================================================================
+CELL 21 | 2287 characters
+===========================================================================
+
+# ============================================================
+# NEXA META-CORE v1.2.1 — RELIABILITY PATCH
+# Bounded concurrency + retry + transparent diagnostics
+# ============================================================
+
+import asyncio
+import time
+
+async def nexa_parallel_council(objective, context):
+
+    semaphore = asyncio.Semaphore(2)
+
+    async def run_agent(name, instructions):
+
+        prompt = f"""
+NEXA MISSION:
+{objective}
+
+PREVIOUS CONTEXT:
+{context or "No previous memory."}
+
+YOUR SPECIALIZED ROLE:
+{instructions}
+
+Requirements:
+- Be precise and technically realistic.
+- Separate facts, assumptions and proposals.
+- Do not invent research, sources or test results.
+- Consider reliability, speed and zero-budget constraints.
+"""
+
+        async with semaphore:
+            for attempt in range(3):
+                try:
+                    result = await nexa_request(prompt)
+
+                    return {
+                        "agent": name,
+                        "status": "SUCCESS",
+                        "attempt": attempt + 1,
+                        "result": result
+                    }
+
+                except Exception as error:
+                    error_message = (
+                        f"{type(error).__name__}: {str(error)}"
+                    )
+
+                    print(
+                        f"[{name}] Attempt {attempt + 1} failed: "
+                        f"{error_message[:700]}"
+                    )
+
+                    if attempt < 2:
+                        await asyncio.sleep(2 * (attempt + 1))
+
+            return {
+                "agent": name,
+                "status": "FAILED",
+                "error": error_message[:1000]
+            }
+
+    tasks = [
+        run_agent(name, instructions)
+        for name, instructions in AGENTS.items()
+    ]
+
+    results = await asyncio.gather(*tasks)
+
+    print("\nAGENT DIAGNOSTICS")
+    for item in results:
+        print(
+            item["agent"],
+            "|", item["status"],
+            "| attempts:", item.get("attempt", 3)
+        )
+
+    return results
+
+
+# Update reliability configuration
+NEXA["parallel_agents"] = 2
+
+print("NEXA RELIABILITY PATCH INSTALLED.")
+print("Concurrency: 2 | Maximum attempts per agent: 3")
+print("No API calls used during patch installation.")
+
+
+
+===========================================================================
+CELL 24 | 17092 characters
+===========================================================================
+
+# ================================================================
+# NEXA v2.0 — UNIVERSAL AUTONOMOUS INTELLIGENCE ARCHITECTURE
+# Multi-Agent | Live Web Research | Memory | Tool Registry
+# Scientific Reasoning | Business Intelligence | Safe Execution
+# ================================================================
+
+import os, re, json, time, sqlite3, traceback, urllib.request
+import urllib.parse
+from pathlib import Path
+from datetime import datetime, timezone
+from html.parser import HTMLParser
+
+# -------------------- CORE CONFIGURATION --------------------
+
+if "client" not in globals() or client is None:
+    raise RuntimeError("Gemini client is not available. Restore its connection first.")
+
+NEXA = {
+    "name": "NEXA",
+    "version": "2.0",
+    "model": "gemini-3.8-flash",
+    "architecture": "Universal Multi-Agent Intelligence",
+    "status": "initializing"
+}
+
+ROOT = Path("/content/NEXA_UNIVERSAL")
+for name in ["memory", "projects", "research", "artifacts",
+             "logs", "agents", "exports", "experiments"]:
+    (ROOT / name).mkdir(parents=True, exist_ok=True)
+
+DB = ROOT / "nexa_universal.db"
+
+def timestamp():
+    return datetime.now(timezone.utc).isoformat()
+
+def connect_db():
+    return sqlite3.connect(DB)
+
+with connect_db() as c:
+    c.executescript("""
+    CREATE TABLE IF NOT EXISTS memory(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, category TEXT, content TEXT
+    );
+    CREATE TABLE IF NOT EXISTS missions(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, objective TEXT, status TEXT, result TEXT
+    );
+    CREATE TABLE IF NOT EXISTS research(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, query TEXT, results TEXT
+    );
+    CREATE TABLE IF NOT EXISTS artifacts(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, name TEXT, path TEXT
+    );
+    CREATE TABLE IF NOT EXISTS experiments(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, hypothesis TEXT, result TEXT
+    );
+    CREATE TABLE IF NOT EXISTS events(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, event TEXT, details TEXT
+    );
+    """)
+
+def remember(content, category="general"):
+    with connect_db() as c:
+        c.execute(
+            "INSERT INTO memory(created,category,content) VALUES(?,?,?)",
+            (timestamp(), category, str(content)[:20000])
+        )
+
+def recall(limit=15, category=None):
+    with connect_db() as c:
+        if category:
+            rows = c.execute(
+                "SELECT created,content FROM memory WHERE category=? ORDER BY id DESC LIMIT ?",
+                (category, limit)
+            ).fetchall()
+        else:
+            rows = c.execute(
+                "SELECT created,category,content FROM memory ORDER BY id DESC LIMIT ?",
+                (limit,)
+            ).fetchall()
+    return rows
+
+def save_artifact(name, content, folder="artifacts"):
+    safe = re.sub(r"[^a-zA-Z0-9_.-]", "_", str(name))
+    path = ROOT / folder / safe
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if isinstance(content, (dict, list)):
+        content = json.dumps(content, ensure_ascii=False, indent=2)
+    path.write_text(str(content), encoding="utf-8")
+    with connect_db() as c:
+        c.execute(
+            "INSERT INTO artifacts(created,name,path) VALUES(?,?,?)",
+            (timestamp(), safe, str(path))
+        )
+    return str(path)
+
+# -------------------- LIVE WEB RESEARCH --------------------
+
+class SearchParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.items = []
+        self.current = None
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "a" and (
+            "result__a" in attrs.get("class", "") or
+            "result-link" in attrs.get("class", "")
+        ):
+            self.current = {
+                "url": attrs.get("href", ""),
+                "title": ""
+            }
+
+    def handle_data(self, data):
+        if self.current is not None:
+            self.current["title"] += data
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self.current is not None:
+            if self.current["title"].strip():
+                self.items.append(self.current)
+            self.current = None
+
+def NEXA_WEB_SEARCH(query, max_results=6):
+    """Best-effort public web search. Results must be independently verified."""
+    query = str(query).strip()
+    if not query:
+        return []
+
+    url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote(query)
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "Mozilla/5.0 NEXA research client"}
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as response:
+            html = response.read().decode("utf-8", errors="replace")
+        parser = SearchParser()
+        parser.feed(html)
+        results = []
+        for item in parser.items[:max_results]:
+            href = item["url"]
+            if href.startswith("//"):
+                href = "https:" + href
+            if href.startswith("/"):
+                continue
+            results.append({
+                "title": item["title"].strip(),
+                "url": href
+            })
+        with connect_db() as c:
+            c.execute(
+                "INSERT INTO research(created,query,results) VALUES(?,?,?)",
+                (timestamp(), query, json.dumps(results, ensure_ascii=False))
+            )
+        return results
+    except Exception as e:
+        remember({"query": query, "error": str(e)}, "web_search_error")
+        return [{"search_error": str(e), "query": query}]
+
+# -------------------- MODEL PROVIDER REGISTRY --------------------
+
+NEXA_PROVIDERS = {
+    "gemini": {
+        "connected": True,
+        "client": client,
+        "model": NEXA["model"]
+    },
+    "openai": {"connected": False, "client": None},
+    "anthropic": {"connected": False, "client": None},
+    "deepseek": {"connected": False, "client": None},
+    "qwen": {"connected": False, "client": None},
+    "mistral": {"connected": False, "client": None},
+    "local_models": {"connected": False, "client": None}
+}
+
+def NEXA_MODEL_CALL(prompt, retries=3):
+    last_error = None
+    for attempt in range(retries):
+        try:
+            response = client.models.generate_content(
+                model=NEXA["model"],
+                contents=prompt
+            )
+            text = response.text
+            if not text:
+                raise ValueError("Empty model response")
+            return text
+        except Exception as e:
+            last_error = e
+            if attempt < retries - 1:
+                time.sleep(2 * (attempt + 1))
+    raise RuntimeError(f"Model request failed: {last_error}")
+
+# -------------------- AGENT SYSTEM --------------------
+
+NEXA_AGENTS = {
+    "SCIENTIST": """
+You are NEXA SCIENTIST.
+Use scientific reasoning, mathematics, evidence evaluation,
+uncertainty analysis, and falsifiable hypotheses.
+Never invent scientific facts or citations.
+""",
+    "INTELLIGENCE_ANALYST": """
+You are NEXA INTELLIGENCE ANALYST.
+Analyze public information, sources, competitors, market signals,
+risks, patterns, and information gaps.
+Separate verified facts from hypotheses.
+""",
+    "INVENTOR_ENGINEER": """
+You are NEXA INVENTOR AND ENGINEER.
+Design original products, software, architectures, algorithms,
+prototypes, automation systems, and technical solutions.
+Prefer practical, testable designs.
+""",
+    "BUSINESS_STRATEGIST": """
+You are NEXA BUSINESS STRATEGIST.
+Identify customer problems, valuable offers, business models,
+pricing hypotheses, distribution, sales and revenue opportunities.
+Never pretend an unverified opportunity is guaranteed income.
+""",
+    "PHILOSOPHER": """
+You are NEXA PHILOSOPHER.
+Examine assumptions, ethics, logic, incentives, meaning,
+long-term consequences, and alternative interpretations.
+""",
+    "CRITICAL_AUDITOR": """
+You are NEXA CRITICAL AUDITOR.
+Find contradictions, unsupported claims, missing evidence,
+security weaknesses, failure modes, and unrealistic assumptions.
+Challenge the other analyses constructively.
+"""
+}
+
+def NEXA_AGENT_RUN(agent_name, objective, research_data=None, context=None):
+    if agent_name not in NEXA_AGENTS:
+        raise ValueError("Unknown agent: " + str(agent_name))
+
+    prompt = f"""
+{NEXA_AGENTS[agent_name]}
+
+MISSION:
+{objective}
+
+AVAILABLE RESEARCH:
+{json.dumps(research_data or [], ensure_ascii=False)}
+
+RELEVANT MEMORY:
+{json.dumps(recall(5), ensure_ascii=False, default=str)}
+
+CONTEXT:
+{json.dumps(context or {}, ensure_ascii=False, default=str)}
+
+Produce a detailed, structured analysis with:
+- Findings
+- Evidence and confidence
+- Assumptions
+- Recommendations
+- Risks
+- Next actions
+
+Do not claim to have executed external actions.
+"""
+    return NEXA_MODEL_CALL(prompt)
+
+# -------------------- TOOL REGISTRY --------------------
+
+NEXA_TOOLS = {}
+
+def NEXA_REGISTER_TOOL(name, function, description):
+    NEXA_TOOLS[name] = {
+        "function": function,
+        "description": description
+    }
+
+def NEXA_LIST_TOOLS():
+    return {
+        name: item["description"]
+        for name, item in NEXA_TOOLS.items()
+    }
+
+NEXA_REGISTER_TOOL(
+    "web_search", NEXA_WEB_SEARCH,
+    "Search public web pages using DuckDuckGo HTML when accessible."
+)
+NEXA_REGISTER_TOOL(
+    "memory_recall", recall,
+    "Retrieve stored NEXA memory."
+)
+NEXA_REGISTER_TOOL(
+    "artifact_save", save_artifact,
+    "Save generated project artifacts within NEXA workspace."
+)
+
+# -------------------- MISSION ORCHESTRATOR --------------------
+
+def NEXA_RUN(objective, web_queries=None, context=None):
+    objective = str(objective).strip()
+    if not objective:
+        raise ValueError("Mission objective is required.")
+
+    with connect_db() as c:
+        cur = c.execute(
+            "INSERT INTO missions(created,objective,status) VALUES(?,?,?)",
+            (timestamp(), objective, "running")
+        )
+        mission_id = cur.lastrowid
+
+    print("\nNEXA MISSION", mission_id)
+    print("Objective:", objective)
+    print("-" * 60)
+
+    try:
+        # Research stage
+        research_data = []
+        for query in (web_queries or [])[:4]:
+            print("RESEARCH:", query)
+            research_data.extend(NEXA_WEB_SEARCH(query))
+
+        outputs = {}
+        for name in [
+            "SCIENTIST",
+            "INTELLIGENCE_ANALYST",
+            "INVENTOR_ENGINEER",
+            "BUSINESS_STRATEGIST",
+            "PHILOSOPHER",
+            "CRITICAL_AUDITOR"
+        ]:
+            print("AGENT:", name)
+            outputs[name] = NEXA_AGENT_RUN(
+                name, objective, research_data, context
+            )
+
+        print("MASTER SYNTHESIS...")
+        synthesis_prompt = f"""
+You are NEXA MASTER INTELLIGENCE.
+
+Combine, compare and challenge these specialist reports.
+Resolve contradictions where evidence permits.
+Do not conceal uncertainty or invent missing facts.
+
+MISSION:
+{objective}
+
+SPECIALIST REPORTS:
+{json.dumps(outputs, ensure_ascii=False)}
+
+WEB RESEARCH:
+{json.dumps(research_data, ensure_ascii=False)}
+
+Create the strongest useful final result with:
+1. Executive decision
+2. Verified findings versus hypotheses
+3. Strategic opportunity
+4. Technical architecture or solution
+5. Commercial model where relevant
+6. Implementation roadmap
+7. Risks and safeguards
+8. Experiments and measurable success criteria
+9. Immediate next actions
+"""
+        final = NEXA_MODEL_CALL(synthesis_prompt)
+
+        result = {
+            "mission_id": mission_id,
+            "objective": objective,
+            "created": timestamp(),
+            "research": research_data,
+            "agents": outputs,
+            "synthesis": final
+        }
+
+        path = save_artifact(
+            f"mission_{mission_id}.json", result, "exports"
+        )
+        save_artifact(
+            f"mission_{mission_id}_report.md",
+            final, "exports"
+        )
+
+        remember({
+            "mission": mission_id,
+            "objective": objective,
+            "report": final[:12000],
+            "artifact": path
+        }, "mission_result")
+
+        with connect_db() as c:
+            c.execute(
+                "UPDATE missions SET status=?,result=? WHERE id=?",
+                ("completed", path, mission_id)
+            )
+
+        print("\nMISSION COMPLETED")
+        print("Saved:", path)
+        print("\n", final)
+        return result
+
+    except Exception as e:
+        with connect_db() as c:
+            c.execute(
+                "UPDATE missions SET status=?,result=? WHERE id=?",
+                ("failed", traceback.format_exc()[-12000:], mission_id)
+            )
+        raise
+
+# -------------------- SCIENTIFIC EXPERIMENT ENGINE --------------------
+
+def NEXA_EXPERIMENT(hypothesis, test_plan, observed_result):
+    record = {
+        "hypothesis": hypothesis,
+        "test_plan": test_plan,
+        "observed_result": observed_result,
+        "created": timestamp()
+    }
+    with connect_db() as c:
+        c.execute(
+            "INSERT INTO experiments(created,hypothesis,result) VALUES(?,?,?)",
+            (timestamp(), str(hypothesis), json.dumps(record, ensure_ascii=False))
+        )
+    remember(record, "experiment")
+    return record
+
+# -------------------- QUALITY AND SYSTEM DIAGNOSTICS --------------------
+
+def NEXA_STATUS():
+    with connect_db() as c:
+        counts = {
+            "missions": c.execute("SELECT COUNT(*) FROM missions").fetchone()[0],
+            "memory_entries": c.execute("SELECT COUNT(*) FROM memory").fetchone()[0],
+            "research_records": c.execute("SELECT COUNT(*) FROM research").fetchone()[0],
+            "artifacts": c.execute("SELECT COUNT(*) FROM artifacts").fetchone()[0],
+            "experiments": c.execute("SELECT COUNT(*) FROM experiments").fetchone()[0]
+        }
+
+    return {
+        "system": NEXA,
+        "providers": {
+            k: v["connected"] for k, v in NEXA_PROVIDERS.items()
+        },
+        "tools": NEXA_LIST_TOOLS(),
+        "database": str(DB),
+        "workspace": str(ROOT),
+        "records": counts,
+        "continuous_runtime": False,
+        "external_actions": "Approval and integrations required"
+    }
+
+def NEXA_SELF_TEST():
+    checks = {}
+    checks["workspace"] = ROOT.exists()
+    checks["database"] = DB.exists()
+    checks["gemini_connection"] = client is not None
+    checks["agents"] = len(NEXA_AGENTS) >= 6
+    checks["tool_registry"] = len(NEXA_TOOLS) >= 3
+
+    test = ROOT / "artifacts" / "_test.txt"
+    test.write_text("NEXA TEST OK", encoding="utf-8")
+    checks["artifact_write"] = test.read_text(encoding="utf-8") == "NEXA TEST OK"
+
+    checks["database_write"] = True
+    remember(checks, "system_test")
+
+    print("NEXA DIAGNOSTICS")
+    for k, v in checks.items():
+        print(("PASS" if v else "FAIL"), k)
+    return all(checks.values())
+
+# -------------------- INITIALIZE --------------------
+
+NEXA["status"] = "operational"
+assert NEXA_SELF_TEST()
+
+print("\n" + "=" * 65)
+print("NEXA UNIVERSAL INTELLIGENCE v2.0 INITIALIZED")
+print("=" * 65)
+print(json.dumps(NEXA_STATUS(), ensure_ascii=False, indent=2))
+print("""
+AVAILABLE COMMANDS:
+
+1. NEXA_RUN("Your mission")
+2. NEXA_WEB_SEARCH("Your research query")
+3. NEXA_STATUS()
+4. NEXA_LIST_TOOLS()
+5. recall()
+6. NEXA_EXPERIMENT(hypothesis, test_plan, observed_result)
+
+The six specialist agents currently use the connected Gemini model.
+Other providers are registered but not connected yet.
+External publishing, messaging and payments are not enabled.
+""")
+
+# FIRST MISSION — BUILD THE NEXT EVOLUTION PLAN
+NEXA_V2_BLUEPRINT = NEXA_RUN(
+    objective="""
+    Engineer the next evolution of NEXA into a reliable autonomous
+    multi-model business and scientific intelligence ecosystem.
+
+    Prioritize:
+    - Real multi-provider model adapters
+    - Reliable live web research and source verification
+    - Sandboxed software engineering and automated testing
+    - Persistent memory and knowledge retrieval
+    - Secure tool execution and permission management
+    - Website and application generation
+    - Marketing and sales workflow automation
+    - Official publishing and communication integrations
+    - Cloud deployment and scheduled background operation
+    - Scientific, mathematical, philosophical and optimization agents
+    - Measurable self-evaluation and continuous improvement
+
+    Produce a technically realistic architecture, dependency map,
+    implementation priorities, tests, security model and deployment plan.
+    Distinguish available capabilities from future integrations.
+    Optimize for low cost and an iPhone-only founder.
+    """,
+    web_queries=[
+        "official Google Gemini API documentation function calling",
+        "official Google Colab runtime limitations documentation",
+        "official GitHub Actions scheduled workflows documentation",
+        "official FastAPI deployment documentation"
+    ],
+    context={"founder_environment": "iPhone and Google Colab",
+             "budget": "zero or near-zero",
+             "priority": "build real capabilities and revenue"}
+)
+
+print("\nNEXA v2.0 READY — BLUEPRINT GENERATED")
+
+
+
+===========================================================================
+CELL 25 | 5467 characters
+===========================================================================
+
+# ============================================================
+# NEXA v2.0 — RELIABILITY PATCH + ONE-CALL MASTER ENGINE
+# ============================================================
+
+import time, json, traceback
+from datetime import datetime, timezone
+
+# 1. SMART RETRY: temporary server overload protection
+def NEXA_MODEL_CALL(prompt, retries=6):
+    last_error = None
+
+    for attempt in range(retries):
+        try:
+            response = client.models.generate_content(
+                model=NEXA["model"],
+                contents=prompt
+            )
+            output = response.text
+            if not output:
+                raise ValueError("Empty Gemini response")
+            return output
+
+        except Exception as e:
+            last_error = e
+            message = str(e).lower()
+
+            temporary = any(x in message for x in [
+                "503", "unavailable", "429", "resource_exhausted",
+                "500", "internal", "deadline", "timed out"
+            ])
+
+            if not temporary or attempt == retries - 1:
+                break
+
+            delay = min(30, 3 * (2 ** attempt))
+            print(
+                f"Temporary API issue. Retry {attempt+1}/{retries} "
+                f"in {delay}s..."
+            )
+            time.sleep(delay)
+
+    raise RuntimeError(f"Gemini unavailable after retries: {last_error}")
+
+
+# 2. SINGLE-CALL MASTER INTELLIGENCE
+def NEXA_RUN_FAST(objective, web_queries=None, context=None):
+
+    objective = str(objective).strip()
+    if not objective:
+        raise ValueError("Mission objective is required.")
+
+    with connect_db() as c:
+        cur = c.execute(
+            "INSERT INTO missions(created,objective,status) VALUES(?,?,?)",
+            (timestamp(), objective, "running")
+        )
+        mission_id = cur.lastrowid
+
+    research_data = []
+    for query in (web_queries or [])[:4]:
+        print("RESEARCH:", query)
+        try:
+            research_data.extend(NEXA_WEB_SEARCH(query))
+        except Exception as e:
+            research_data.append({"query": query, "error": str(e)})
+
+    prompt = f"""
+You are NEXA UNIVERSAL MASTER INTELLIGENCE.
+
+Perform an integrated analysis using these specialist perspectives:
+- Scientific researcher
+- Intelligence analyst
+- Inventor and systems engineer
+- Business strategist
+- Philosopher and critical thinker
+- Security and quality auditor
+
+MISSION:
+{objective}
+
+RESEARCH RESULTS:
+{json.dumps(research_data, ensure_ascii=False)}
+
+EXISTING MEMORY:
+{json.dumps(recall(8), ensure_ascii=False, default=str)}
+
+CONTEXT:
+{json.dumps(context or {}, ensure_ascii=False)}
+
+Produce a technically detailed, realistic engineering blueprint.
+
+Include:
+1. Target architecture and modules
+2. Real multi-model provider integration strategy
+3. Live research and source verification
+4. Independent agent orchestration
+5. Secure tool execution and approval controls
+6. Software creation and testing
+7. Business and revenue automation
+8. Official communication and publishing integrations
+9. Persistent storage and cloud deployment
+10. Scientific, mathematical and optimization capabilities
+11. Quantum computing: distinguish simulation from real hardware
+12. Development priorities and dependencies
+13. Automated tests and measurable success criteria
+14. Cost-minimization strategy for an iPhone-only founder
+15. What works now versus what still needs integration
+
+Never invent successful integrations, live research, test results,
+customers, revenue, or external actions.
+Be specific. Prioritize the highest-value next engineering steps.
+"""
+
+    try:
+        print("\nNEXA MASTER INTELLIGENCE: PROCESSING...")
+        result = NEXA_MODEL_CALL(prompt, retries=6)
+
+        path = save_artifact(
+            f"nexa_v2_master_blueprint_{mission_id}.md",
+            result,
+            "exports"
+        )
+
+        remember({
+            "mission_id": mission_id,
+            "objective": objective,
+            "blueprint": result[:18000],
+            "artifact": path
+        }, "master_blueprint")
+
+        with connect_db() as c:
+            c.execute(
+                "UPDATE missions SET status=?,result=? WHERE id=?",
+                ("completed", path, mission_id)
+            )
+
+        print("\n" + "=" * 60)
+        print("NEXA MASTER BLUEPRINT COMPLETED")
+        print("=" * 60)
+        print("Saved:", path)
+        print("\n", result)
+
+        return result
+
+    except Exception:
+        with connect_db() as c:
+            c.execute(
+                "UPDATE missions SET status=?,result=? WHERE id=?",
+                ("failed", traceback.format_exc()[-10000:], mission_id)
+            )
+        raise
+
+
+# 3. EXECUTE THE NEXT ENGINEERING MISSION
+NEXA_V2_BLUEPRINT = NEXA_RUN_FAST(
+    objective="""
+Design the next real engineering evolution of NEXA.
+Create an implementation plan for a universal autonomous
+multi-agent intelligence and business ecosystem.
+Prioritize real capabilities, low cost, reliability and security.
+The architecture must be modular and extensible.
+""",
+    web_queries=[
+        "official Gemini API function calling documentation",
+        "official GitHub Actions scheduled workflows documentation"
+    ],
+    context={
+        "device": "iPhone only",
+        "environment": "Google Colab",
+        "budget": "zero or near zero",
+        "existing_system": "NEXA v2.0",
+        "priority": "real working capabilities"
+    }
+)
+
+print("\nNEXA RELIABILITY PATCH ACTIVE.")
+print("System status:", NEXA_STATUS())
+
+
+
+===========================================================================
+CELL 26 | 9912 characters
+===========================================================================
+
+# ============================================================
+# NEXA v2.1 — RUNTIME RECOVERY + SELF-CONTAINED MASTER ENGINE
+# ============================================================
+
+import os, re, json, time, sqlite3, traceback
+from pathlib import Path
+from datetime import datetime, timezone
+
+# Recover the existing Gemini connection if it still exists.
+if "client" not in globals() or client is None:
+    raise RuntimeError(
+        "Gemini connection is missing. Run your original Gemini client "
+        "connection cell first, then run this recovery cell again."
+    )
+
+NEXA = globals().get("NEXA", {
+    "name": "NEXA",
+    "version": "2.1",
+    "model": "gemini-3.8-flash",
+    "status": "recovering"
+})
+NEXA["version"] = "2.1"
+
+ROOT = Path("/content/NEXA_UNIVERSAL")
+for folder in [
+    "memory", "projects", "research", "artifacts",
+    "logs", "agents", "exports", "experiments"
+]:
+    (ROOT / folder).mkdir(parents=True, exist_ok=True)
+
+DB = ROOT / "nexa_universal.db"
+
+def timestamp():
+    return datetime.now(timezone.utc).isoformat()
+
+def connect_db():
+    conn = sqlite3.connect(str(DB))
+    conn.row_factory = sqlite3.Row
+    return conn
+
+with connect_db() as con:
+    con.executescript("""
+    CREATE TABLE IF NOT EXISTS memory(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, category TEXT, content TEXT
+    );
+    CREATE TABLE IF NOT EXISTS missions(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, objective TEXT, status TEXT, result TEXT
+    );
+    CREATE TABLE IF NOT EXISTS research(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, query TEXT, results TEXT
+    );
+    CREATE TABLE IF NOT EXISTS artifacts(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, name TEXT, path TEXT
+    );
+    CREATE TABLE IF NOT EXISTS experiments(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, hypothesis TEXT, result TEXT
+    );
+    CREATE TABLE IF NOT EXISTS events(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        created TEXT, event TEXT, details TEXT
+    );
+    """)
+
+def remember(content, category="general"):
+    with connect_db() as con:
+        con.execute(
+            "INSERT INTO memory(created,category,content) VALUES(?,?,?)",
+            (timestamp(), category, str(content)[:20000])
+        )
+
+def recall(limit=10):
+    with connect_db() as con:
+        return [
+            dict(row) for row in con.execute(
+                "SELECT created,category,content FROM memory "
+                "ORDER BY id DESC LIMIT ?", (int(limit),)
+            ).fetchall()
+        ]
+
+def save_artifact(name, content, folder="artifacts"):
+    safe = re.sub(r"[^a-zA-Z0-9_.-]", "_", str(name))
+    path = ROOT / folder / safe
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    if isinstance(content, (dict, list)):
+        content = json.dumps(content, ensure_ascii=False, indent=2)
+
+    path.write_text(str(content), encoding="utf-8")
+
+    with connect_db() as con:
+        con.execute(
+            "INSERT INTO artifacts(created,name,path) VALUES(?,?,?)",
+            (timestamp(), safe, str(path))
+        )
+    return str(path)
+
+# Reliable model call with exponential backoff.
+def NEXA_MODEL_CALL(prompt, retries=6):
+    last_error = None
+
+    for attempt in range(retries):
+        try:
+            response = client.models.generate_content(
+                model=NEXA["model"],
+                contents=prompt
+            )
+            if not response.text:
+                raise ValueError("Empty model response")
+            return response.text
+
+        except Exception as e:
+            last_error = e
+            msg = str(e).lower()
+            temporary = any(x in msg for x in [
+                "503", "unavailable", "429",
+                "resource_exhausted", "500",
+                "internal", "deadline", "timed out"
+            ])
+
+            if not temporary or attempt == retries - 1:
+                break
+
+            delay = min(30, 3 * (2 ** attempt))
+            print(f"Temporary API issue. Retry in {delay}s...")
+            time.sleep(delay)
+
+    raise RuntimeError(f"Model unavailable: {last_error}")
+
+# Restore search capability, best effort.
+def NEXA_WEB_SEARCH(query, max_results=5):
+    import urllib.request
+    import urllib.parse
+    from html.parser import HTMLParser
+
+    class Parser(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.results = []
+            self.current = None
+
+        def handle_starttag(self, tag, attrs):
+            a = dict(attrs)
+            if tag == "a" and "result__a" in a.get("class", ""):
+                self.current = {"title": "", "url": a.get("href", "")}
+
+        def handle_data(self, data):
+            if self.current is not None:
+                self.current["title"] += data
+
+        def handle_endtag(self, tag):
+            if tag == "a" and self.current:
+                self.results.append(self.current)
+                self.current = None
+
+    try:
+        url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote(query)
+        req = urllib.request.Request(
+            url, headers={"User-Agent": "Mozilla/5.0"}
+        )
+        with urllib.request.urlopen(req, timeout=15) as response:
+            html = response.read().decode("utf-8", errors="replace")
+
+        parser = Parser()
+        parser.feed(html)
+        results = parser.results[:max_results]
+
+        with connect_db() as con:
+            con.execute(
+                "INSERT INTO research(created,query,results) VALUES(?,?,?)",
+                (timestamp(), query, json.dumps(results, ensure_ascii=False))
+            )
+        return results
+
+    except Exception as e:
+        return [{"query": query, "search_error": str(e)}]
+
+# Single-call integrated intelligence engine.
+def NEXA_RUN_FAST(objective, web_queries=None, context=None):
+    with connect_db() as con:
+        cur = con.execute(
+            "INSERT INTO missions(created,objective,status) VALUES(?,?,?)",
+            (timestamp(), objective, "running")
+        )
+        mission_id = cur.lastrowid
+
+    try:
+        research_data = []
+        for q in (web_queries or [])[:3]:
+            print("RESEARCH:", q)
+            research_data.extend(NEXA_WEB_SEARCH(q))
+
+        prompt = f"""
+You are NEXA Universal Master Intelligence.
+
+Analyze this mission through six perspectives:
+science, intelligence research, engineering, business,
+philosophy, and critical auditing.
+
+MISSION:
+{objective}
+
+RESEARCH:
+{json.dumps(research_data, ensure_ascii=False)}
+
+MEMORY:
+{json.dumps(recall(8), ensure_ascii=False)}
+
+CONTEXT:
+{json.dumps(context or {}, ensure_ascii=False)}
+
+Deliver a detailed technical blueprint including:
+- Modular architecture
+- Independent multi-model providers and agent orchestration
+- Web research and source verification
+- Secure tools and sandboxing
+- Software generation and automated tests
+- Business, marketing and sales automation
+- Official publishing and communication integrations
+- Persistent memory and cloud deployment
+- Scientific, mathematical and quantum-inspired methods
+- Real quantum hardware access versus simulation
+- Prioritized implementation roadmap
+- Costs, dependencies, risks and acceptance tests
+
+Separate capabilities already available from future integrations.
+Never invent research, citations, successful tests, customers or revenue.
+Optimize for an iPhone-only founder with near-zero budget.
+"""
+
+        print("\nNEXA MASTER INTELLIGENCE RUNNING...")
+        result = NEXA_MODEL_CALL(prompt)
+
+        path = save_artifact(
+            f"nexa_blueprint_{mission_id}.md",
+            result, "exports"
+        )
+        remember({
+            "mission": mission_id,
+            "objective": objective,
+            "blueprint_path": path,
+            "summary": result[:15000]
+        }, "master_blueprint")
+
+        with connect_db() as con:
+            con.execute(
+                "UPDATE missions SET status=?,result=? WHERE id=?",
+                ("completed", path, mission_id)
+            )
+
+        print("\nNEXA BLUEPRINT COMPLETED")
+        print("Saved:", path)
+        print("\n", result)
+        return result
+
+    except Exception:
+        with connect_db() as con:
+            con.execute(
+                "UPDATE missions SET status=?,result=? WHERE id=?",
+                ("failed", traceback.format_exc()[-10000:], mission_id)
+            )
+        raise
+
+def NEXA_STATUS():
+    with connect_db() as con:
+        tables = ["missions", "memory", "research", "artifacts", "experiments"]
+        counts = {
+            t: con.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0]
+            for t in tables
+        }
+    return {
+        "version": NEXA["version"],
+        "status": "operational",
+        "gemini_connected": client is not None,
+        "database": str(DB),
+        "records": counts
+    }
+
+# Recovery checks
+checks = {
+    "gemini": client is not None,
+    "database": DB.exists(),
+    "workspace": ROOT.exists(),
+    "memory": callable(recall),
+    "mission_engine": callable(NEXA_RUN_FAST)
+}
+
+print("NEXA RECOVERY:", checks)
+assert all(checks.values()), "Recovery checks failed."
+
+NEXA["status"] = "operational"
+print(json.dumps(NEXA_STATUS(), ensure_ascii=False, indent=2))
+
+# Execute one integrated mission.
+NEXA_V2_BLUEPRINT = NEXA_RUN_FAST(
+    objective="""
+Create the next engineering blueprint for NEXA:
+a modular, reliable, multi-model autonomous intelligence
+and business ecosystem. Prioritize working integrations,
+security, persistent memory, scientific reasoning,
+real-world execution and a path to sustainable revenue.
+""",
+    web_queries=[
+        "official Gemini API function calling documentation",
+        "official GitHub Actions scheduled workflows documentation"
+    ],
+    context={
+        "device": "iPhone",
+        "environment": "Google Colab",
+        "budget": "near zero",
+        "existing_system": "NEXA v2"
+    }
+)
+
+
+
+===========================================================================
+CELL 28 | 4313 characters
+===========================================================================
+# ============================================================
+# NEXA UNIVERSAL INTELLIGENCE — SELF-CONTAINED CORE v2.2
+# ============================================================
+
+import os, json, sqlite3, time, traceback
+from datetime import datetime, timezone
+
+# 1. Recover and verify Gemini connection
+if "client" not in globals() or client is None:
+    raise RuntimeError("Gemini client is not connected. Reconnect first.")
+
+MODEL = "gemini-3.8-flash"
+DB_PATH = "/content/nexa_universal_memory.db"
+
+# 2. Persistent database for this Colab runtime
+db = sqlite3.connect(DB_PATH, check_same_thread=False)
+db.execute("""
+CREATE TABLE IF NOT EXISTS missions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp TEXT,
+    task TEXT,
+    result TEXT,
+    status TEXT
+)
+""")
+db.commit()
+
+# 3. NEXA intelligence architecture
+NEXA_CONFIG = {
+    "name": "NEXA",
+    "version": "2.2",
+    "architecture": "Universal Intelligence Core",
+    "capabilities": [
+        "Scientific reasoning",
+        "Open-source intelligence analysis",
+        "Mathematics and engineering",
+        "Invention and problem solving",
+        "Business opportunity analysis",
+        "Critical thinking and verification",
+        "Software architecture and development",
+        "Strategic planning"
+    ],
+    "execution": "Single-model call with reliability retries",
+    "external_actions": "Disabled unless explicitly integrated and authorized"
+}
+
+SYSTEM_PROMPT = """
+You are NEXA, a rigorous universal intelligence and engineering system.
+
+For every mission:
+1. Understand the actual objective.
+2. Analyze it using relevant scientific, mathematical,
+   engineering, business and strategic disciplines.
+3. Separate verified facts, assumptions and hypotheses.
+4. Identify weaknesses, risks and missing information.
+5. Develop practical, testable solutions.
+6. Compare alternatives and optimize for real-world results.
+7. Never invent sources, experiments, capabilities or results.
+8. Never claim to have executed an external action unless it happened.
+
+Use clear structured output:
+OBJECTIVE
+ANALYSIS
+DISCOVERIES
+SOLUTION
+RISKS
+EXECUTION PLAN
+VALIDATION
+
+Be ambitious in reasoning, but precise about what is actually possible.
+"""
+
+# 4. Reliable model execution
+def NEXA_RUN(task, max_retries=3):
+    if not isinstance(task, str) or not task.strip():
+        raise ValueError("Mission cannot be empty.")
+
+    prompt = SYSTEM_PROMPT + "\n\nMISSION:\n" + task.strip()
+
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model=MODEL,
+                contents=prompt
+            )
+
+            result = getattr(response, "text", None)
+            if not result:
+                raise RuntimeError("Gemini returned an empty response.")
+
+            timestamp = datetime.now(timezone.utc).isoformat()
+
+            db.execute(
+                "INSERT INTO missions(timestamp, task, result, status) VALUES (?, ?, ?, ?)",
+                (timestamp, task, result, "completed")
+            )
+            db.commit()
+
+            print("NEXA MISSION COMPLETED")
+            print("=" * 55)
+            print(result)
+            return result
+
+        except Exception as error:
+            print(f"Attempt {attempt + 1}/{max_retries} failed: {error}")
+            if attempt < max_retries - 1:
+                time.sleep(2 ** (attempt + 1))
+
+    print("Mission not completed. No successful result was recorded.")
+    return None
+
+# 5. Memory retrieval
+def NEXA_MEMORY(limit=5):
+    rows = db.execute(
+        "SELECT timestamp, task, result, status FROM missions ORDER BY id DESC LIMIT ?",
+        (limit,)
+    ).fetchall()
+
+    return [
+        {
+            "timestamp": row[0],
+            "task": row[1],
+            "result": row[2],
+            "status": row[3]
+        }
+        for row in rows
+    ]
+
+# 6. System status
+def NEXA_STATUS():
+    return {
+        **NEXA_CONFIG,
+        "gemini_connected": client is not None,
+        "database_ready": db.execute("SELECT 1").fetchone()[0] == 1,
+        "saved_missions": db.execute(
+            "SELECT COUNT(*) FROM missions"
+        ).fetchone()[0]
+    }
+
+print("NEXA UNIVERSAL INTELLIGENCE v2.2")
+print(json.dumps(NEXA_STATUS(), indent=2, ensure_ascii=False))
+print("\nSYSTEM READY — awaiting first mission.")
+
+
+===========================================================================
+CELL 31 | 10965 characters
+===========================================================================
+
+# ============================================================
+# NEXA 3.0 — UNIVERSAL MULTI-AGENT CORE
+# Zero-budget / Google Colab / Existing Gemini connection
+# ============================================================
+
+import os, sys, json, time, sqlite3, re, ast, traceback
+import urllib.request
+import urllib.parse
+import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
+
+# ---------- 1. CONNECT TO EXISTING GEMINI ----------
+if "client" not in globals() or client is None:
+    raise RuntimeError("Gemini connection missing. Reconnect first.")
+
+NEXA_MODEL = "gemini-3.8-flash"
+NEXA_VERSION = "3.0"
+
+# ---------- 2. PERSISTENT STORAGE ----------
+STORAGE = "/content/nexa_3"
+DRIVE_READY = False
+
+try:
+    from google.colab import drive
+    drive.mount("/content/drive")
+    STORAGE = "/content/drive/MyDrive/NEXA_3"
+    DRIVE_READY = True
+except Exception as e:
+    print("Drive unavailable; using temporary storage:", str(e)[:180])
+
+os.makedirs(STORAGE, exist_ok=True)
+DB_PATH = os.path.join(STORAGE, "nexa_memory.sqlite3")
+
+db = sqlite3.connect(DB_PATH, check_same_thread=False)
+db.execute("""
+CREATE TABLE IF NOT EXISTS missions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    mission_id TEXT,
+    created_at TEXT,
+    stage TEXT,
+    content TEXT,
+    status TEXT
+)
+""")
+db.commit()
+
+def save_stage(mission_id, stage, content, status="completed"):
+    db.execute(
+        """INSERT INTO missions
+        (mission_id, created_at, stage, content, status)
+        VALUES (?, ?, ?, ?, ?)""",
+        (
+            mission_id,
+            datetime.now(timezone.utc).isoformat(),
+            stage,
+            str(content),
+            status
+        )
+    )
+    db.commit()
+
+# ---------- 3. REAL ACADEMIC SEARCH ----------
+def NEXA_ARXIV_SEARCH(topic, limit=5):
+    try:
+        params = urllib.parse.urlencode({
+            "search_query": "all:" + topic,
+            "start": 0,
+            "max_results": limit,
+            "sortBy": "relevance"
+        })
+        url = "https://export.arxiv.org/api/query?" + params
+        request = urllib.request.Request(
+            url, headers={"User-Agent": "NEXA-Research/3.0"}
+        )
+        with urllib.request.urlopen(request, timeout=20) as response:
+            xml_data = response.read()
+
+        root = ET.fromstring(xml_data)
+        ns = {"a": "http://www.w3.org/2005/Atom"}
+        papers = []
+
+        for entry in root.findall("a:entry", ns):
+            papers.append({
+                "title": (entry.findtext("a:title", default="", namespaces=ns)).strip(),
+                "summary": (entry.findtext("a:summary", default="", namespaces=ns)).strip(),
+                "url": entry.findtext("a:id", default="", namespaces=ns),
+                "published": entry.findtext("a:published", default="", namespaces=ns)
+            })
+
+        return {"available": True, "papers": papers}
+
+    except Exception as e:
+        return {"available": False, "error": str(e), "papers": []}
+
+# ---------- 4. OPTIONAL MARKET SEARCH ----------
+def NEXA_MARKET_SEARCH(query, limit=5):
+    try:
+        try:
+            from ddgs import DDGS
+        except ImportError:
+            from duckduckgo_search import DDGS
+
+        with DDGS() as search:
+            results = list(search.text(query, max_results=limit))
+
+        return {
+            "available": True,
+            "results": [
+                {
+                    "title": x.get("title", ""),
+                    "url": x.get("href", ""),
+                    "snippet": x.get("body", "")
+                }
+                for x in results
+            ]
+        }
+    except Exception as e:
+        return {
+            "available": False,
+            "error": str(e),
+            "results": []
+        }
+
+# ---------- 5. GEMINI RELIABILITY ENGINE ----------
+def NEXA_MODEL_CALL(role, instructions, context, retries=3):
+    prompt = f"""
+You are a specialized agent inside NEXA {NEXA_VERSION}.
+
+ROLE:
+{role}
+
+INSTRUCTIONS:
+{instructions}
+
+CONTEXT:
+{context}
+
+RULES:
+- Distinguish facts, assumptions and hypotheses.
+- Never invent sources, experiments or measurements.
+- Cite source URLs when supplied.
+- Identify uncertainty and limitations.
+- Produce actionable, structured results.
+"""
+
+    for attempt in range(retries):
+        try:
+            response = client.models.generate_content(
+                model=NEXA_MODEL,
+                contents=prompt
+            )
+            result = getattr(response, "text", None)
+            if result and result.strip():
+                return result.strip()
+            raise RuntimeError("Empty model response")
+
+        except Exception as e:
+            print(f"{role}: attempt {attempt + 1} failed: {str(e)[:200]}")
+            if attempt < retries - 1:
+                time.sleep(2 ** (attempt + 1))
+
+    raise RuntimeError(f"{role} failed after {retries} attempts")
+
+# ---------- 6. AGENT DEFINITIONS ----------
+AGENTS = {
+    "SCIENTIFIC": (
+        "Scientific Researcher",
+        "Analyze scientific foundations, relevant literature, "
+        "methods, equations and research gaps. Separate evidence "
+        "from speculation."
+    ),
+    "ENGINEERING": (
+        "Systems and Software Engineer",
+        "Design an implementable architecture. Provide algorithms, "
+        "interfaces, implementation plans and test cases. "
+        "Never claim code was executed unless it was."
+    ),
+    "COMMERCIAL": (
+        "Commercial Intelligence Strategist",
+        "Analyze customer problems, competitors, demand signals, "
+        "business models, costs, distribution and realistic "
+        "zero-budget validation experiments."
+    ),
+    "AUDITOR": (
+        "Independent Critical Auditor",
+        "Challenge the previous agents. Detect unsupported claims, "
+        "contradictions, technical flaws, missing evidence and risks. "
+        "Propose corrections."
+    ),
+    "COORDINATOR": (
+        "Chief Intelligence Coordinator",
+        "Combine the agent outputs into one coherent decision report. "
+        "Prioritize feasible actions, identify dependencies and "
+        "define measurable validation criteria."
+    )
+}
+
+# ---------- 7. MISSION EXECUTION ----------
+def NEXA_RUN(task):
+    if not isinstance(task, str) or not task.strip():
+        raise ValueError("Enter a valid mission.")
+
+    mission_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    started = time.time()
+
+    print("\n" + "=" * 60)
+    print("NEXA 3.0 — MISSION STARTED:", mission_id)
+    print("=" * 60)
+
+    save_stage(mission_id, "MISSION", task)
+
+    # Actual external academic retrieval
+    print("\n[1/7] Academic source retrieval...")
+    academic = NEXA_ARXIV_SEARCH(task)
+    save_stage(mission_id, "ARXIV", json.dumps(academic, ensure_ascii=False))
+
+    # Actual best-effort market retrieval
+    print("[2/7] Market source retrieval...")
+    market = NEXA_MARKET_SEARCH(task + " market competitors products")
+    save_stage(mission_id, "MARKET_SEARCH",
+               json.dumps(market, ensure_ascii=False))
+
+    context = {
+        "mission": task,
+        "academic_sources": academic,
+        "market_search": market
+    }
+
+    outputs = {}
+
+    # Research agent
+    print("[3/7] Scientific agent...")
+    outputs["SCIENTIFIC"] = NEXA_MODEL_CALL(
+        *AGENTS["SCIENTIFIC"],
+        json.dumps(context, ensure_ascii=False)
+    )
+    save_stage(mission_id, "SCIENTIFIC", outputs["SCIENTIFIC"])
+
+    # Engineering agent
+    print("[4/7] Engineering agent...")
+    outputs["ENGINEERING"] = NEXA_MODEL_CALL(
+        *AGENTS["ENGINEERING"],
+        json.dumps({
+            "mission": task,
+            "scientific_analysis": outputs["SCIENTIFIC"]
+        }, ensure_ascii=False)
+    )
+    save_stage(mission_id, "ENGINEERING", outputs["ENGINEERING"])
+
+    # Commercial agent
+    print("[5/7] Commercial agent...")
+    outputs["COMMERCIAL"] = NEXA_MODEL_CALL(
+        *AGENTS["COMMERCIAL"],
+        json.dumps({
+            "mission": task,
+            "engineering_proposal": outputs["ENGINEERING"],
+            "market_sources": market
+        }, ensure_ascii=False)
+    )
+    save_stage(mission_id, "COMMERCIAL", outputs["COMMERCIAL"])
+
+    # Critical audit
+    print("[6/7] Critical auditor...")
+    outputs["AUDITOR"] = NEXA_MODEL_CALL(
+        *AGENTS["AUDITOR"],
+        json.dumps({
+            "mission": task,
+            "scientific": outputs["SCIENTIFIC"],
+            "engineering": outputs["ENGINEERING"],
+            "commercial": outputs["COMMERCIAL"],
+            "retrieved_sources": context
+        }, ensure_ascii=False)
+    )
+    save_stage(mission_id, "AUDIT", outputs["AUDITOR"])
+
+    # Final coordination
+    print("[7/7] Coordinator...")
+    outputs["FINAL"] = NEXA_MODEL_CALL(
+        *AGENTS["COORDINATOR"],
+        json.dumps({
+            "mission": task,
+            "agent_reports": outputs
+        }, ensure_ascii=False)
+    )
+    save_stage(mission_id, "FINAL", outputs["FINAL"])
+
+    elapsed = round(time.time() - started, 2)
+
+    report = {
+        "mission_id": mission_id,
+        "version": NEXA_VERSION,
+        "elapsed_seconds": elapsed,
+        "storage": DB_PATH,
+        "drive_persistence": DRIVE_READY,
+        "academic_search_success": academic["available"],
+        "market_search_success": market["available"],
+        "agents": outputs
+    }
+
+    report_path = os.path.join(STORAGE, mission_id + ".json")
+    with open(report_path, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    print("\n" + "=" * 60)
+    print("NEXA MISSION COMPLETED")
+    print("Time:", elapsed, "seconds")
+    print("Report:", report_path)
+    print("=" * 60)
+    print(outputs["FINAL"])
+
+    return report
+
+# ---------- 8. MEMORY AND STATUS ----------
+def NEXA_MEMORY(limit=10):
+    rows = db.execute(
+        """SELECT mission_id, stage, content, status
+        FROM missions ORDER BY id DESC LIMIT ?""",
+        (limit,)
+    ).fetchall()
+
+    return [
+        {"mission_id": r[0], "stage": r[1],
+         "content": r[2], "status": r[3]}
+        for r in rows
+    ]
+
+def NEXA_STATUS():
+    return {
+        "name": "NEXA",
+        "version": NEXA_VERSION,
+        "gemini_connected": client is not None,
+        "model": NEXA_MODEL,
+        "database_ready": db.execute("SELECT 1").fetchone()[0] == 1,
+        "drive_persistence": DRIVE_READY,
+        "saved_stages": db.execute(
+            "SELECT COUNT(*) FROM missions"
+        ).fetchone()[0],
+        "agents": list(AGENTS.keys()),
+        "external_actions": "Not enabled",
+        "continuous_runtime": False
+    }
+
+# ---------- 9. INTERNAL VALIDATION ----------
+assert callable(NEXA_RUN)
+assert callable(NEXA_ARXIV_SEARCH)
+assert callable(NEXA_MODEL_CALL)
+assert db.execute("SELECT 1").fetchone()[0] == 1
+
+print("\n" + "=" * 60)
+print("NEXA UNIVERSAL MULTI-AGENT CORE 3.0")
+print("=" * 60)
+print(json.dumps(NEXA_STATUS(), indent=2, ensure_ascii=False))
+print("\nLOCAL VALIDATION: PASS")
+print("SYSTEM READY — use NEXA_RUN('your mission')")
+
+
+
+===========================================================================
+CELL 34 | 6258 characters
+===========================================================================
+
+# ============================================================
+# NEXA 3.1 FAST CORE — SINGLE MODEL CALL
+# Keeps the existing NEXA 3.0 database and research functions
+# ============================================================
+
+import os
+import json
+import time
+import uuid
+from datetime import datetime, timezone
+from concurrent.futures import ThreadPoolExecutor
+
+NEXA_VERSION = "3.1"
+
+def NEXA_SAFE_RESEARCH(fn, query, label):
+    try:
+        result = fn(query)
+        return result
+    except Exception as e:
+        return {
+            "available": False,
+            "source": label,
+            "error": str(e)[:500]
+        }
+
+def NEXA_RUN(task):
+    if not isinstance(task, str) or not task.strip():
+        raise ValueError("Enter a valid mission.")
+
+    if client is None:
+        raise RuntimeError("Gemini client is not connected.")
+
+    mission_id = datetime.now(timezone.utc).strftime(
+        "%Y%m%d_%H%M%S_%f"
+    )
+    started = time.time()
+
+    print("\n" + "=" * 60)
+    print("NEXA 3.1 FAST CORE — MISSION:", mission_id)
+    print("=" * 60)
+
+    save_stage(mission_id, "MISSION", task)
+
+    # Parallel external research
+    print("\n[1/3] Parallel research...")
+
+    pool = ThreadPoolExecutor(max_workers=2)
+
+    academic_future = pool.submit(
+        NEXA_SAFE_RESEARCH,
+        NEXA_ARXIV_SEARCH,
+        task,
+        "arXiv"
+    )
+
+    market_future = pool.submit(
+        NEXA_SAFE_RESEARCH,
+        NEXA_MARKET_SEARCH,
+        task + " market competitors products",
+        "Market"
+    )
+
+    try:
+        academic = academic_future.result(timeout=35)
+    except Exception as e:
+        academic = {
+            "available": False,
+            "error": str(e)[:300]
+        }
+
+    try:
+        market = market_future.result(timeout=35)
+    except Exception as e:
+        market = {
+            "available": False,
+            "error": str(e)[:300]
+        }
+
+    pool.shutdown(wait=False, cancel_futures=True)
+
+    save_stage(
+        mission_id, "ARXIV",
+        json.dumps(academic, ensure_ascii=False)
+    )
+    save_stage(
+        mission_id, "MARKET_SEARCH",
+        json.dumps(market, ensure_ascii=False)
+    )
+
+    print("[2/3] Unified intelligence council...")
+    print("One Gemini request for all five analytical roles.")
+
+    council = {
+        "mission": task,
+        "academic_sources": academic,
+        "market_sources": market,
+        "agents": AGENTS
+    }
+
+    prompt = f"""
+You are NEXA 3.1, a rigorous multi-disciplinary intelligence council.
+
+MISSION:
+{task}
+
+AVAILABLE RESEARCH:
+{json.dumps(council, ensure_ascii=False)}
+
+Perform the work of these five specialist roles:
+
+1. SCIENTIFIC RESEARCHER:
+Examine evidence, scientific foundations, relevant methods,
+research gaps and uncertainty.
+
+2. SYSTEMS ENGINEER:
+Design a practical architecture, prototype, interfaces,
+implementation plan and tests.
+
+3. COMMERCIAL STRATEGIST:
+Identify real customer problems, market signals, competitors,
+customer segments, costs and revenue opportunities.
+
+4. CRITICAL AUDITOR:
+Challenge every role. Find unsupported claims, contradictions,
+hidden costs, risks and unrealistic assumptions.
+
+5. CHIEF COORDINATOR:
+Resolve disagreements and produce one final decision.
+
+REQUIRED REPORT:
+
+A. Executive conclusion.
+B. Verified facts, with URLs where supplied.
+C. Assumptions and hypotheses, clearly labelled.
+D. Customer problem and evidence.
+E. Technical architecture.
+F. Prototype specification and implementation.
+G. Cost estimate, distinguishing known prices from estimates.
+H. Potential customer segments and methods to identify prospects.
+I. First-customer acquisition plan.
+J. Risks and failure scenarios.
+K. Critical audit and corrections.
+L. Prioritized execution roadmap.
+
+RULES:
+- Never invent sources, customers, prices or statistics.
+- Never claim that a prototype has been built or tested unless true.
+- Explicitly disclose missing evidence.
+- Prefer solutions possible with zero initial budget.
+- Be analytical, specific and concise.
+- Do not confuse a proposed plan with completed work.
+"""
+
+    try:
+        response = client.models.generate_content(
+            model=NEXA_MODEL,
+            contents=prompt
+        )
+
+        final = getattr(response, "text", None)
+
+        if not final or not final.strip():
+            raise RuntimeError("Gemini returned an empty response.")
+
+        final = final.strip()
+
+    except Exception as e:
+        error = str(e)
+        save_stage(mission_id, "ERROR", error)
+
+        if "429" in error or "RESOURCE_EXHAUSTED" in error:
+            print("\nNEXA STOPPED: Gemini quota limit.")
+            print("No repeated requests were sent.")
+            raise RuntimeError(
+                "Gemini quota exhausted. Wait for quota reset "
+                "or configure another available provider."
+            ) from e
+
+        raise RuntimeError(
+            "NEXA model request failed: " + error[:500]
+        ) from e
+
+    print("[3/3] Saving unified report...")
+
+    save_stage(mission_id, "UNIFIED_COUNCIL", final)
+    save_stage(mission_id, "FINAL", final)
+
+    elapsed = round(time.time() - started, 2)
+
+    report = {
+        "mission_id": mission_id,
+        "version": NEXA_VERSION,
+        "elapsed_seconds": elapsed,
+        "storage": DB_PATH,
+        "drive_persistence": DRIVE_READY,
+        "academic_search_success": academic.get("available", False),
+        "market_search_success": market.get("available", False),
+        "model_requests": 1,
+        "architecture": "Unified five-role council",
+        "agents": {
+            "UNIFIED_COUNCIL": final
+        },
+        "final": final
+    }
+
+    report_path = os.path.join(
+        STORAGE, mission_id + ".json"
+    )
+
+    with open(report_path, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    print("\n" + "=" * 60)
+    print("NEXA 3.1 MISSION COMPLETED")
+    print("Time:", elapsed, "seconds")
+    print("Gemini requests: 1")
+    print("Report:", report_path)
+    print("=" * 60)
+
+    print(final)
+
+    return report
+
+
+print("=" * 60)
+print("NEXA 3.1 FAST CORE INSTALLED")
+print("Database preserved:", DB_PATH)
+print("Drive persistence:", DRIVE_READY)
+print("Gemini connected:", client is not None)
+print("Unified council: READY")
+print("=" * 60)
+
+
+
+===========================================================================
+CELL 36 | 8135 characters
+===========================================================================
+
+# ============================================================
+# NEXA QUANT 4.0 — MULTI-PROVIDER FOUNDATION
+# Preserves NEXA 3.x database and existing research functions
+# ============================================================
+
+import os, json, time, urllib.request, urllib.error, getpass
+from datetime import datetime, timezone
+from concurrent.futures import ThreadPoolExecutor
+
+NEXA_VERSION = "4.0"
+NEXA_PROVIDERS = {}
+NEXA_PROVIDER_STATUS = {}
+
+PROVIDER_CONFIG = {
+    "GROQ": {
+        "base": "https://api.groq.com/openai/v1",
+        "model": "openai/gpt-oss-120b"
+    },
+    "OPENROUTER": {
+        "base": "https://openrouter.ai/api/v1",
+        "model": "openrouter/free"
+    },
+    "NVIDIA": {
+        "base": "https://integrate.api.nvidia.com/v1",
+        "model": None
+    }
+}
+
+def _nexa_http(url, key, method="GET", payload=None, timeout=25):
+    headers = {"Authorization": "Bearer " + key}
+    data = None
+
+    if payload is not None:
+        data = json.dumps(payload).encode()
+        headers["Content-Type"] = "application/json"
+
+    req = urllib.request.Request(
+        url, data=data, headers=headers, method=method
+    )
+
+    with urllib.request.urlopen(req, timeout=timeout) as response:
+        return json.loads(response.read().decode())
+
+def NEXA_REGISTER_PROVIDERS():
+    print("\nNEXA 4.0 — SECURE PROVIDER REGISTRATION")
+
+    for name, cfg in PROVIDER_CONFIG.items():
+        key = getpass.getpass(
+            f"{name} API key (Enter to skip): "
+        ).strip()
+
+        if not key:
+            NEXA_PROVIDER_STATUS[name] = "NOT CONFIGURED"
+            continue
+
+        try:
+            result = _nexa_http(
+                cfg["base"] + "/models", key
+            )
+
+            models = result.get("data", [])
+            model_ids = [
+                m.get("id") for m in models
+                if isinstance(m, dict) and m.get("id")
+            ]
+
+            if name == "NVIDIA":
+                candidates = [
+                    m for m in model_ids
+                    if "nemotron" in m.lower()
+                    or "llama" in m.lower()
+                ]
+                if candidates:
+                    cfg["model"] = candidates[0]
+                else:
+                    cfg["model"] = model_ids[0] if model_ids else None
+
+            NEXA_PROVIDERS[name] = {
+                "key": key,
+                "base": cfg["base"],
+                "model": cfg["model"]
+            }
+
+            NEXA_PROVIDER_STATUS[name] = (
+                "CONNECTED — " + str(len(model_ids)) + " models discovered"
+            )
+
+            print(name, ":", NEXA_PROVIDER_STATUS[name])
+
+        except Exception as e:
+            NEXA_PROVIDER_STATUS[name] = (
+                "FAILED: " + str(e)[:180]
+            )
+            print(name, ":", NEXA_PROVIDER_STATUS[name])
+
+    print("\nRegistration completed.")
+    print("Generation quota has not been used by this test.")
+
+def NEXA_PROVIDER_CALL(provider, prompt):
+    cfg = NEXA_PROVIDERS[provider]
+
+    payload = {
+        "model": cfg["model"],
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a rigorous NEXA intelligence engine. "
+                           "Separate evidence, assumptions and hypotheses. "
+                           "Never invent facts or sources."
+            },
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.2,
+        "max_tokens": 3500
+    }
+
+    result = _nexa_http(
+        cfg["base"] + "/chat/completions",
+        cfg["key"],
+        method="POST",
+        payload=payload,
+        timeout=120
+    )
+
+    return result["choices"][0]["message"]["content"]
+
+def NEXA_QUANT_STATUS():
+    return {
+        "version": NEXA_VERSION,
+        "database": DB_PATH,
+        "drive_persistence": DRIVE_READY,
+        "providers": NEXA_PROVIDER_STATUS,
+        "connected_count": len(NEXA_PROVIDERS),
+        "gemini_connected": client is not None,
+        "automatic_paid_fallback": False
+    }
+
+def NEXA_QUANT_RUN(task):
+    if not isinstance(task, str) or not task.strip():
+        raise ValueError("Mission cannot be empty.")
+
+    if not NEXA_PROVIDERS:
+        raise RuntimeError(
+            "No provider configured. Run NEXA_REGISTER_PROVIDERS()."
+        )
+
+    mission_id = datetime.now(timezone.utc).strftime(
+        "%Y%m%d_%H%M%S_%f"
+    )
+    started = time.time()
+
+    print("\nNEXA QUANT 4.0 —", mission_id)
+
+    save_stage(mission_id, "MISSION", task)
+
+    # Research retrieval in parallel
+    print("[1/3] Research retrieval...")
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        fa = pool.submit(NEXA_ARXIV_SEARCH, task)
+        fm = pool.submit(
+            NEXA_MARKET_SEARCH,
+            task + " market competitors products"
+        )
+
+        try:
+            academic = fa.result(timeout=40)
+        except Exception as e:
+            academic = {"available": False, "error": str(e)[:300]}
+
+        try:
+            market = fm.result(timeout=40)
+        except Exception as e:
+            market = {"available": False, "error": str(e)[:300]}
+
+    save_stage(
+        mission_id, "RESEARCH",
+        json.dumps(
+            {"academic": academic, "market": market},
+            ensure_ascii=False
+        )
+    )
+
+    prompt = f"""
+NEXA QUANT INTELLIGENCE MISSION
+
+MISSION:
+{task}
+
+ACADEMIC RETRIEVAL:
+{json.dumps(academic, ensure_ascii=False)}
+
+MARKET RETRIEVAL:
+{json.dumps(market, ensure_ascii=False)}
+
+SPECIALIST COUNCIL:
+{json.dumps(AGENTS, ensure_ascii=False)}
+
+Perform all five roles:
+1. Scientific research and evidence analysis.
+2. Systems engineering and prototype design.
+3. Commercial intelligence and customer validation.
+4. Adversarial audit and error detection.
+5. Final coordination and decision.
+
+Deliver:
+- Verified facts and source URLs.
+- Assumptions and missing evidence.
+- Technical architecture.
+- Prototype specification.
+- Costs and dependencies.
+- Customer discovery strategy.
+- First-customer acquisition plan.
+- Critical risks and corrections.
+- Prioritized execution roadmap.
+
+Do not claim proposed work has been executed.
+Never invent sources, prices, customers or test results.
+"""
+
+    # Provider fallback: no endless retries.
+    failures = []
+
+    print("[2/3] Intelligent provider selection...")
+
+    priority = ["GROQ", "NVIDIA", "OPENROUTER"]
+    final = None
+    selected = None
+
+    for name in priority:
+        if name not in NEXA_PROVIDERS:
+            continue
+
+        print("Trying:", name)
+
+        try:
+            final = NEXA_PROVIDER_CALL(name, prompt)
+            selected = name
+            break
+
+        except Exception as e:
+            error = str(e)[:500]
+            failures.append({"provider": name, "error": error})
+            print("Provider unavailable:", name, error[:180])
+
+            # No automatic retries after quota/auth failures.
+            continue
+
+    if not final:
+        save_stage(
+            mission_id, "PROVIDER_FAILURE",
+            json.dumps(failures, ensure_ascii=False)
+        )
+        raise RuntimeError(
+            "All configured providers failed. "
+            "Previous research has been saved."
+        )
+
+    print("[3/3] Saving final intelligence report...")
+
+    save_stage(mission_id, "FINAL", final)
+
+    report = {
+        "mission_id": mission_id,
+        "version": NEXA_VERSION,
+        "provider": selected,
+        "elapsed_seconds": round(time.time() - started, 2),
+        "research": {
+            "academic": academic,
+            "market": market
+        },
+        "provider_failures": failures,
+        "final": final
+    }
+
+    path = os.path.join(STORAGE, mission_id + ".json")
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    print("\nMISSION COMPLETED")
+    print("Provider:", selected)
+    print("Elapsed:", report["elapsed_seconds"], "seconds")
+    print("Report:", path)
+    print("\n", final)
+
+    return report
+
+# Preserve old NEXA_RUN; use explicit QUANT function for now.
+NEXA_REGISTER_PROVIDERS()
+
+print("\n========== NEXA QUANT 4.0 ==========")
+print(json.dumps(NEXA_QUANT_STATUS(), indent=2))
+
+
+
+===========================================================================
+CELL 45 | 2069 characters
+===========================================================================
+# NEXA 4.0 — OPENROUTER RELIABILITY PATCH
+
+import json, urllib.request, urllib.error
+
+def NEXA_PROVIDER_CALL(provider, prompt):
+    cfg = NEXA_PROVIDERS[provider]
+
+    payload = {
+        "model": cfg["model"],
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are NEXA QUANT INTELLIGENCE. "
+                    "Separate verified evidence, assumptions and hypotheses. "
+                    "Never invent sources or claim unperformed work."
+                )
+            },
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.2,
+        "max_tokens": 3000
+    }
+
+    req = urllib.request.Request(
+        cfg["base"].rstrip("/") + "/chat/completions",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Authorization": "Bearer " + cfg["key"].strip(),
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://nexa.local",
+            "X-Title": "NEXA QUANT INTELLIGENCE"
+        },
+        method="POST"
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=120) as response:
+            data = json.loads(response.read().decode("utf-8"))
+
+        content = data["choices"][0]["message"].get("content")
+
+        if not content or not content.strip():
+            raise RuntimeError(
+                "Provider returned an empty response: " +
+                json.dumps(data, ensure_ascii=False)[:1500]
+            )
+
+        return content.strip()
+
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"{provider} HTTP {e.code}: {detail[:1800]}"
+        ) frosm e
+
+
+# One small live test
+try:
+    answer = NEXA_PROVIDER_CALL(
+        "OPENROUTER",
+        "Reply exactly: NEXA QUANT ENGINE READY"
+    )
+    print("GENERATION VERIFIED:")
+    print(answer)
+    NEXA_PROVIDER_STATUS["OPENROUTER"] = (
+        "CONNECTED — GENERATION VERIFIED"
+    )
+except Exception as e:
+    print("DIAGNOSTIC:", str(e)[:2000])
+
+
+===========================================================================
+CELL 47 | 4295 characters
+===========================================================================
+
+# NEXA QUANT 4.1 — COMMERCIAL MISSION ENGINE
+# Safe patch: preserves existing database and provider credentials.
+
+import os, json, time
+from datetime import datetime, timezone
+
+def NEXA_QUANT_RUN_V41(task):
+    if not isinstance(task, str) or not task.strip():
+        raise ValueError("Mission cannot be empty.")
+
+    if "OPENROUTER" not in NEXA_PROVIDERS:
+        raise RuntimeError("OpenRouter is not configured.")
+
+    mission_id = datetime.now(timezone.utc).strftime(
+        "%Y%m%d_%H%M%S_%f"
+    )
+    started = time.time()
+
+    print("=" * 60)
+    print("NEXA QUANT 4.1 —", mission_id)
+    print("=" * 60)
+
+    save_stage(mission_id, "MISSION", task)
+
+    # Commercial missions do not need unrelated academic searches.
+    research = {
+        "academic": {
+            "status": "SKIPPED",
+            "reason": "Not relevant to this commercial mission."
+        },
+        "market": {
+            "status": "NOT_VERIFIED",
+            "reason": "Live market-source retrieval is not yet validated."
+        }
+    }
+
+    # Try the existing market search only; never invent evidence.
+    try:
+        market_result = NEXA_MARKET_SEARCH(
+            task + " market competitors Italy"
+        )
+        research["market"] = {
+            "status": "RETRIEVED",
+            "data": market_result
+        }
+    except Exception as e:
+        research["market"] = {
+            "status": "UNAVAILABLE",
+            "error": str(e)[:500]
+        }
+
+    save_stage(
+        mission_id,
+        "RESEARCH",
+        json.dumps(research, ensure_ascii=False, default=str)
+    )
+
+    prompt = f"""
+You are NEXA QUANT INTELLIGENCE.
+
+MISSION:
+{task}
+
+RETRIEVAL STATUS:
+{json.dumps(research, ensure_ascii=False, default=str)}
+
+SPECIALIST COUNCIL:
+{json.dumps(AGENTS, ensure_ascii=False, default=str)}
+
+Work as five specialist roles:
+1. Scientific and evidence analyst.
+2. Systems architect and engineer.
+3. Commercial strategist.
+4. Adversarial auditor.
+5. Chief coordinator.
+
+IMPORTANT RULES:
+- Separate verified facts, hypotheses and recommendations.
+- Never invent sources, URLs, customers, prices or statistics.
+- If market retrieval is unavailable, explicitly say so.
+- Do not claim customer validation without actual evidence.
+- Prioritize solutions possible with zero initial budget.
+- Identify technical, legal and operational limitations.
+
+DELIVER:
+A. Executive decision.
+B. Opportunity and customer problem.
+C. Evidence and missing information.
+D. Competitors and market validation plan.
+E. Technical architecture.
+F. Prototype we can actually build.
+G. Estimated costs and dependencies; label estimates.
+H. First-customer acquisition strategy.
+I. Risks and adversarial critique.
+J. Concrete execution plan, prioritized by impact.
+K. First action we should execute next.
+
+Be precise, critical and practical.
+"""
+
+    print("\n[1/3] Research stage saved.")
+    print("[2/3] Calling verified provider: OPENROUTER")
+
+    final = NEXA_PROVIDER_CALL("OPENROUTER", prompt)
+
+    if not isinstance(final, str) or not final.strip():
+        raise RuntimeError("Provider returned an empty report.")
+
+    save_stage(mission_id, "FINAL", final)
+
+    report = {
+        "mission_id": mission_id,
+        "version": "4.1",
+        "provider": "OPENROUTER",
+        "elapsed_seconds": round(time.time() - started, 2),
+        "research": research,
+        "final": final
+    }
+
+    os.makedirs(STORAGE, exist_ok=True)
+    path = os.path.join(STORAGE, mission_id + ".json")
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    print("\n[3/3] REPORT SAVED")
+    print("Mission:", mission_id)
+    print("Provider: OPENROUTER")
+    print("Report:", path)
+    print("\n" + "=" * 60)
+    print(final)
+    print("=" * 60)
+
+    return report
+
+
+# Execute the first commercial mission
+mission = """
+NEXA COMMERCIAL INTELLIGENCE:
+Identify the strongest realistic zero-budget AI service
+we can build and sell to small businesses in Italy.
+
+Focus on real customer problems, achievable services,
+fast prototype development, first paying customer,
+competition, legal requirements and practical execution.
+
+We have an iPhone, free tools and no initial capital.
+Do not assume we have a website, customers or a company.
+"""
+
+report = NEXA_QUANT_RUN_V41(mission)
+
+
+
+===========================================================================
+CELL 49 | 3064 characters
+===========================================================================
+
+# NEXA 4.2 — PROVIDER ROUTING PATCH + AUDIT RETRY
+import json, os
+from datetime import datetime, timezone
+import urllib.request
+import urllib.error
+
+# Pin the previously verified free model.
+cfg = NEXA_PROVIDERS["OPENROUTER"]
+cfg["model"] = "baidu/ernie-5.5-flash-preview:free"
+
+def NEXA_PROVIDER_CALL(provider, prompt):
+    cfg = NEXA_PROVIDERS[provider]
+
+    payload = {
+        "model": cfg["model"],
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are NEXA QUANT INTELLIGENCE. "
+                    "Return a complete, concise, structured answer. "
+                    "Put the final answer in message content."
+                )
+            },
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.2,
+        "max_tokens": 5000
+    }
+
+    req = urllib.request.Request(
+        cfg["base"].rstrip("/") + "/chat/completions",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Authorization": "Bearer " + cfg["key"].strip(),
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://nexa.local",
+            "X-Title": "NEXA QUANT INTELLIGENCE"
+        },
+        method="POST"
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=150) as response:
+            data = json.loads(response.read().decode("utf-8"))
+
+        choice = data["choices"][0]
+        message = choice.get("message") or {}
+        content = message.get("content")
+
+        if isinstance(content, list):
+            content = "\n".join(
+                x.get("text", "") for x in content
+                if isinstance(x, dict)
+            )
+
+        if not content or not str(content).strip():
+            raise RuntimeError(
+                "Empty response. Model=" + str(data.get("model")) +
+                ", finish_reason=" + str(choice.get("finish_reason"))
+            )
+
+        return str(content).strip()
+
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"{provider} HTTP {e.code}: {detail[:1200]}"
+        ) from e
+
+
+print("MODEL:", cfg["model"])
+print("TESTING PROVIDER...")
+
+test = NEXA_PROVIDER_CALL(
+    "OPENROUTER",
+    "Reply exactly: NEXA AUDIT ENGINE READY"
+)
+print("TEST:", test)
+
+# Reuse the audit prompt already prepared in the previous cell.
+if "audit_prompt" not in globals():
+    raise RuntimeError("Previous audit_prompt is missing.")
+
+print("\nRUNNING INDEPENDENT AUDIT...")
+audit = NEXA_PROVIDER_CALL("OPENROUTER", audit_prompt)
+
+audit_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f")
+save_stage(audit_id, "ADVERSARIAL_AUDIT", audit)
+
+audit_path = os.path.join(STORAGE, audit_id + "_audit.json")
+with open(audit_path, "w", encoding="utf-8") as f:
+    json.dump({
+        "audit_id": audit_id,
+        "provider": "OPENROUTER",
+        "model": cfg["model"],
+        "audit": audit
+    }, f, ensure_ascii=False, indent=2)
+
+print("\nAUDIT COMPLETED:", audit_path)
+print("\n", audit)
+
+
+
+===========================================================================
+CELL 51 | 4242 characters
+===========================================================================
+
+# NEXA 4.3 — SMART FREE MODEL ROUTER + AUDIT
+import json, os, urllib.request, urllib.error
+from datetime import datetime, timezone
+
+cfg = NEXA_PROVIDERS["OPENROUTER"]
+
+# Ordered candidates; avoid recently rate-limited models.
+NEXA_MODEL_POOL = [
+    "inclusionai/ling-3.2-flash:free",
+    "nvidia/nemotron-3.5-lightning:free",
+    "google/gemma-4-26b-a4b-it:free",
+]
+
+def NEXA_SMART_CALL(prompt, max_tokens=3500):
+    failures = []
+
+    for model in NEXA_MODEL_POOL:
+        print("ROUTING:", model)
+
+        payload = {
+            "model": model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": (
+                        "You are NEXA QUANT INTELLIGENCE. "
+                        "Be rigorous, practical and concise. "
+                        "Never invent evidence."
+                    )
+                },
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 0.2,
+            "max_tokens": max_tokens
+        }
+
+        req = urllib.request.Request(
+            cfg["base"].rstrip("/") + "/chat/completions",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Authorization": "Bearer " + cfg["key"].strip(),
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://nexa.local",
+                "X-Title": "NEXA QUANT INTELLIGENCE"
+            },
+            method="POST"
+        )
+
+        try:
+            with urllib.request.urlopen(req, timeout=150) as response:
+                data = json.loads(response.read().decode("utf-8"))
+
+            choice = data["choices"][0]
+            message = choice.get("message") or {}
+            content = message.get("content")
+
+            if isinstance(content, list):
+                content = "\n".join(
+                    item.get("text", "")
+                    for item in content
+                    if isinstance(item, dict)
+                )
+
+            if content and str(content).strip():
+                print("SELECTED:", model)
+                return {
+                    "model": model,
+                    "content": str(content).strip(),
+                    "failures": failures
+                }
+
+            reason = choice.get("finish_reason")
+            failures.append({
+                "model": model,
+                "error": "Empty content; finish_reason=" + str(reason)
+            })
+            print("EMPTY RESPONSE — switching model")
+
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode("utf-8", errors="replace")
+            failures.append({
+                "model": model,
+                "http": e.code,
+                "error": detail[:700]
+            })
+
+            print("HTTP", e.code, "—", model)
+
+            # Switch only for temporary availability failures.
+            if e.code not in (429, 500, 502, 503, 504):
+                raise RuntimeError(
+                    "Non-retryable provider error: " + detail[:1200]
+                ) from e
+
+        except Exception as e:
+            failures.append({
+                "model": model,
+                "error": str(e)[:700]
+            })
+            print("MODEL ERROR — switching")
+
+    raise RuntimeError(
+        "All candidate models unavailable: " +
+        json.dumps(failures, ensure_ascii=False)[:3000]
+    )
+
+
+if "audit_prompt" not in globals():
+    raise RuntimeError(
+        "Audit prompt is missing. Re-run the previous audit-prompt cell first."
+    )
+
+print("=" * 55)
+print("NEXA 4.3 — INDEPENDENT AUDIT")
+print("=" * 55)
+
+result = NEXA_SMART_CALL(audit_prompt, max_tokens=3500)
+audit = result["content"]
+
+audit_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f")
+save_stage(audit_id, "ADVERSARIAL_AUDIT", audit)
+
+audit_path = os.path.join(STORAGE, audit_id + "_audit.json")
+
+with open(audit_path, "w", encoding="utf-8") as f:
+    json.dump({
+        "audit_id": audit_id,
+        "version": "4.3",
+        "selected_model": result["model"],
+        "fallback_failures": result["failures"],
+        "audit": audit
+    }, f, ensure_ascii=False, indent=2)
+
+print("\nAUDIT SAVED:", audit_path)
+print("\nSELECTED MODEL:", result["model"])
+print("\n", audit)

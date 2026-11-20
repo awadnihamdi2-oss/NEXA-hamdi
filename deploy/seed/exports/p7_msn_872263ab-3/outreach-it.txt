@@ -1,0 +1,11 @@
+SEND STATUS: UNSENT_REQUIRES_HUMAN_APPROVAL
+PROSPECT URL: https://www.fisioterapiaatlante.it/
+OGGETTO: Prototipo mobile e prenotazioni — Fisioterapia Atlante (Milano)
+
+Buongiorno,
+ho consultato il sito pubblico di Fisioterapia Atlante (https://www.fisioterapiaatlante.it/) e ho preparato una breve anteprima dimostrativa gratuita, senza alcun impegno:
+- Adattamento mobile-first con viewport dedicato e gerarchia chiara dei contenuti su smartphone;
+- Modulo diretto di richiesta appuntamento con consenso GDPR e pulsante di chiamata rapida cliccabile verso il vostro numero 02-47712410.
+Sul vostro sito attuale HTTPS e descrizione meta risultano già impostati correttamente; il prototipo interviene solo sulla resa da cellulare e sull'immediatezza del contatto.
+Se Le fa piacere visionare la bozza in anteprima privata, resto a disposizione.
+Cordiali saluti.

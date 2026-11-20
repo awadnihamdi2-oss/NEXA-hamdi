@@ -1,0 +1,58 @@
+# Turnkey Single-Writer Production Stack for NEXA QUANT INTELLIGENCE
+# Supports automatic Let's Encrypt HTTPS (via Caddy) + persistent SQLite WAL storage (/app/data).
+# Usage:
+#   1. cp .env.example .env.production  (fill strong NEXA_SESSION_SECRET, NEXA_SCHEDULER_TOKEN, NEXA_ADMIN_PASSWORD, APP_URL)
+#   2. NEXA_DOMAIN=nexa.yourdomain.com docker compose -f deploy/compose.yaml up -d --build
+
+services:
+  nexa:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: nexa-quant-prod
+    restart: unless-stopped
+    env_file:
+      - ../.env.production
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      DISABLE_HMR: "true"
+      NEXA_DATA_DIR: /app/data
+      NEXA_DB_PATH: /app/data/nexa_genesis.sqlite3
+      NEXA_PAID_FALLBACK_ALLOWED: "false"
+      NEXA_LIVE_TRADING_ENABLED: "false"
+      NEXA_EXTERNAL_COMMERCE_ENABLED: "false"
+    volumes:
+      - nexa_data:/app/data
+      - nexa_workspace:/app/workspace_projects
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: nexa-caddy-tls
+    restart: unless-stopped
+    depends_on:
+      nexa:
+        condition: service_healthy
+    environment:
+      NEXA_DOMAIN: ${NEXA_DOMAIN:-:80}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  nexa_data:
+  nexa_workspace:
+  caddy_data:
+  caddy_config:

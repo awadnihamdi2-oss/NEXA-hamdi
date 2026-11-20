@@ -1,0 +1,23 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Runtime SQLite databases, WAL/SHM journals, backups & generated artifacts
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*-wal
+*-shm
+!deploy/seed/
+!deploy/seed/**
+data/
+workspace_projects/
+Hamdi
+Hamdi-wal
+Hamdi-shm
+

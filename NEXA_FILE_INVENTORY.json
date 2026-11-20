@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-11-16T12:00:00Z",
+  "audit_sources": [
+    "/public/assets/aistudio/NEXA_COMPLETE_AUDIT_REPORT_db947389.txt",
+    "/public/assets/aistudio/NEXA_CORE_ENGINE_SOURCE__1__14f5cfd1.txt",
+    "/public/assets/aistudio/Paste_November_16__2026_-_8_55PM_d3049eda"
+  ],
+  "local_legacy_drive_mounted": false,
+  "legacy_archive_summary": {
+    "root": "/content/drive/MyDrive/NEXA_3",
+    "total_discovered_files": 53,
+    "python_files": 10,
+    "sqlite_databases": 4,
+    "html_templates_and_sites": 10,
+    "key_artifacts": [
+      {
+        "path": "NEXA_3/NEXA_6_0/core/nexa6_core.py",
+        "type": "python",
+        "size_bytes": 7097,
+        "sha256": "3d8904eaecd29f60fe3549a49f8643bb42bf02db2ad4f768a87f2a56e4b66ea5",
+        "role": "Master mission, agent_runs, evidence, approvals, artifacts, events SQLite kernel"
+      },
+      {
+        "path": "NEXA_3/NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_bridge_service.py",
+        "type": "python",
+        "size_bytes": 6814,
+        "sha256": "3e3cc68ba821dc0b08bdce9dff6d27b66f046243cf512ba1d684c856a2eee46e",
+        "role": "Transactional multi-database mission-to-commerce bridge"
+      },
+      {
+        "path": "NEXA_3/NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_ai_gateway.py",
+        "type": "python",
+        "size_bytes": 8145,
+        "sha256": "860904edf980a11cfc6a4de40703ef9cfba718b0eb19fe7b92eadcc67e7367b2",
+        "role": "OpenRouter/Groq/NVIDIA gateway with cooldowns and 401/403 circuit-breaker"
+      },
+      {
+        "path": "NEXA_3/NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_multi_ai_engine.py",
+        "type": "python",
+        "size_bytes": 4026,
+        "sha256": "177c8418da4eb43a3151607d04c64082b267fd2e71a51401fa12a397a354fb6e",
+        "role": "Strict free-variant + text-modality router"
+      },
+      {
+        "path": "NEXA_3/NEXA_INTEGRATION_BRIDGE_1_0/integration/nexa_orchestrator.py",
+        "type": "python",
+        "size_bytes": 5755,
+        "sha256": "c06728d24eeadad15ee82770bd077778d054e825ad6633169d1cc01cc40d35f3",
+        "role": "5-role planner/researcher/analyst/critic/synthesizer pipeline"
+      },
+      {
+        "path": "NEXA_3/NEXA_AUTONOMOUS_COMMERCE_5_0/core/config.json",
+        "type": "json",
+        "size_bytes": 477,
+        "sha256": "1dc11513a3a7ebdb7db358e6ada725b39fd9f55717674f9fb56ee7a60b192c4a",
+        "role": "Local-first safety lock config (external_actions_enabled: false)"
+      },
+      {
+        "path": "NEXA_3/NEXA_6_0/data/nexa6.sqlite3",
+        "type": "sqlite3",
+        "size_bytes": 40960,
+        "role": "NEXA 6.0 kernel database"
+      },
+      {
+        "path": "NEXA_3/NEXA_AUTONOMOUS_COMMERCE_5_0/data/nexa_commerce.sqlite3",
+        "type": "sqlite3",
+        "size_bytes": 77824,
+        "role": "Autonomous Commerce database"
+      },
+      {
+        "path": "NEXA_3/NEXA_INTEGRATION_BRIDGE_1_0/data/nexa_bridge.sqlite3",
+        "type": "sqlite3",
+        "size_bytes": 4096,
+        "role": "Bridge registry and events database"
+      },
+      {
+        "path": "NEXA_3/nexa_memory.sqlite3",
+        "type": "sqlite3",
+        "size_bytes": 192512,
+        "role": "Legacy Colab agent memory store"
+      }
+    ]
+  },
+  "current_workspace_baseline": {
+    "runtime": {
+      "node": "v22.23.2",
+      "python": "3.10.12",
+      "sqlite": "node:sqlite (native DatabaseSync)"
+    },
+    "initial_files": [
+      "package.json",
+      "metadata.json",
+      "index.html",
+      "tsconfig.json",
+      "vite.config.ts",
+      ".env.example",
+      "src/App.tsx",
+      "src/index.css",
+      "src/main.tsx"
+    ]
+  }
+}

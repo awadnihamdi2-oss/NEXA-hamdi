@@ -1,0 +1,54 @@
+{
+  "exportedAt": "2026-11-20T17:04:32.970Z",
+  "missionId": "p7_msn_872263ab-3",
+  "niche": "fisioterapia",
+  "market": "Milano",
+  "researchStatus": "PARTIAL_LIVE",
+  "deliverableId": "p7_pkg_a08d5e05-d",
+  "revisionNumber": 2,
+  "qaStatus": "READY",
+  "qaScore": 92,
+  "qaReviewerAgentId": "quality_assurance_agent",
+  "localPreviewRoute": "/preview/p7/p7_pkg_a08d5e05-d",
+  "safetyLocks": {
+    "externalOutreachMode": "READ_ONLY_DISABLED",
+    "clientEmails": "DISABLED",
+    "whatsappMessages": "DISABLED",
+    "smsMessages": "DISABLED",
+    "websitePublishing": "DISABLED",
+    "adsPublishing": "DISABLED",
+    "realPayments": "DISABLED",
+    "customerAccountCreation": "DISABLED",
+    "trading": "DISABLED",
+    "purchases": "DISABLED",
+    "usesProductionCustomerDataForTests": false
+  },
+  "realizedRevenueEur": 0,
+  "files": [
+    {
+      "name": "deliverable-preview.html",
+      "bytes": 7253,
+      "sha256": "5e45a56322176631455ba6c91749bfbb8cbdd4a1870a2a1f8dcd615849e66f4d"
+    },
+    {
+      "name": "client-package.md",
+      "bytes": 8300,
+      "sha256": "8ccf6e4dbc9ab769eda371d25d91844040d8b2e6969bd2cfeae87754f96185a4"
+    },
+    {
+      "name": "client-package.json",
+      "bytes": 19946,
+      "sha256": "90cd21b0100cf9bb933d819c2a9426cd9a2e5f8dc983bfaef4f16bf6ca08a239"
+    },
+    {
+      "name": "qa-report.json",
+      "bytes": 3021,
+      "sha256": "a6afc54ad66d96d846787c643aab50838c2f295f9e32f56f4e0a8789539b618f"
+    },
+    {
+      "name": "outreach-it.txt",
+      "bytes": 862,
+      "sha256": "ea0028b5e9ce0906874d28c2e7eedaf781cdf91ffad1242930a4f1d9903ab6f3"
+    }
+  ]
+}

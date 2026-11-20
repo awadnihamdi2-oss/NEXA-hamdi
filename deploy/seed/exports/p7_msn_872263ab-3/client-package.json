@@ -1,0 +1,358 @@
+{
+  "environmentPolicy": {
+    "externalOutreachMode": "READ_ONLY_DISABLED",
+    "clientEmails": "DISABLED",
+    "whatsappMessages": "DISABLED",
+    "smsMessages": "DISABLED",
+    "websitePublishing": "DISABLED",
+    "adsPublishing": "DISABLED",
+    "realPayments": "DISABLED",
+    "customerAccountCreation": "DISABLED",
+    "trading": "DISABLED",
+    "purchases": "DISABLED",
+    "usesProductionCustomerDataForTests": false
+  },
+  "isSimulatedFixture": false,
+  "opportunityReport": {
+    "opportunityId": "p7_opp_d9b87bc9-e",
+    "title": "Fisioterapia Atlante — Adeguamento Mobile-First, Struttura Semantica e Richiesta Appuntamenti (Milano)",
+    "customerSegment": "Fisioterapia Atlante (Fisioterapia, Milano)",
+    "serviceCategory": "Adeguamento Web Mobile-First e Acquisizione Appuntamenti",
+    "totalScore": 84.4,
+    "evidenceConfidence": 92,
+    "criteriaBreakdown": [
+      {
+        "key": "demandEvidence",
+        "label": "Demand Evidence",
+        "weight": 0.16,
+        "score": 88,
+        "rationale": "Supported by 5 verified public record(s) for fisioterapia in Milano."
+      },
+      {
+        "key": "customerPain",
+        "label": "Customer Pain",
+        "weight": 0.18,
+        "score": 94,
+        "rationale": "Observed 6 concrete digital presence gap(s) impacting lead capture."
+      },
+      {
+        "key": "competition",
+        "label": "Competition Headroom",
+        "weight": 0.08,
+        "score": 72,
+        "rationale": "Local SMB digital service market is fragmented; tailored single-niche delivery lowers commoditization."
+      },
+      {
+        "key": "potentialValue",
+        "label": "Potential Commercial Value",
+        "weight": 0.12,
+        "score": 74,
+        "rationale": "Fixed-scope SMB setup (EUR 450–650 estimate) addresses direct booking conversion leaks."
+      },
+      {
+        "key": "implementationDifficulty",
+        "label": "Implementation Simplicity",
+        "weight": 0.08,
+        "score": 70,
+        "rationale": "Estimated 12h focused frontend + lead-flow delivery."
+      },
+      {
+        "key": "cost",
+        "label": "Low Initial Operating Cost",
+        "weight": 0.08,
+        "score": 96,
+        "rationale": "EUR 0 initial hosting/infra cost (static edge deployment ready)."
+      },
+      {
+        "key": "risk",
+        "label": "Low Delivery & Compliance Risk",
+        "weight": 0.08,
+        "score": 82,
+        "rationale": "Non-clinical, non-regulated web prototype behind explicit human review before any client outreach."
+      },
+      {
+        "key": "timeToDeliver",
+        "label": "Time to Deliver",
+        "weight": 0.07,
+        "score": 73,
+        "rationale": "Deliverable as interactive prototype + review package within 5–7 business days."
+      },
+      {
+        "key": "confidenceInEvidence",
+        "label": "Confidence in Available Evidence",
+        "weight": 0.15,
+        "score": 92,
+        "rationale": "100% verified source ratio (5/5 valid records)."
+      }
+    ]
+  },
+  "researchEvidence": [
+    {
+      "id": "p7_src_9f7aac63-6",
+      "sourceTitle": "OpenStreetMap Business Record: Fisioterapia Atlante",
+      "sourceUrl": "https://www.openstreetmap.org/node/11794876335",
+      "sourceProvider": "osm_nominatim",
+      "retrievedAt": "2026-11-20T17:03:59.885Z",
+      "relevantEvidence": "Observed public directory listing for \"Fisioterapia Atlante\" in Milano. Website tag present: yes (https://www.fisioterapiaatlante.it/); Phone metadata present: yes.",
+      "evidenceClassification": "VERIFIED_SOURCE_DATA",
+      "confidence": 0.85,
+      "limitations": "OpenStreetMap relies on crowd-maintained metadata; website omission does not guarantee the business lacks an unlisted site."
+    },
+    {
+      "id": "p7_src_69ef2b49-0",
+      "sourceTitle": "OpenStreetMap Business Record: Fisioterapia Laguardia",
+      "sourceUrl": "https://www.openstreetmap.org/node/9460237224",
+      "sourceProvider": "osm_nominatim",
+      "retrievedAt": "2026-11-20T17:03:59.885Z",
+      "relevantEvidence": "Observed public directory listing for \"Fisioterapia Laguardia\" in Milano. Website tag present: yes (https://www.fisioterapiatrezzo.it/); Phone metadata present: yes.",
+      "evidenceClassification": "VERIFIED_SOURCE_DATA",
+      "confidence": 0.85,
+      "limitations": "OpenStreetMap relies on crowd-maintained metadata; website omission does not guarantee the business lacks an unlisted site."
+    },
+    {
+      "id": "p7_src_940d3e8e-8",
+      "sourceTitle": "OpenStreetMap Business Record: Ambulatorio medico Maratea - Odontoiatria Fisioterapia Osteopatia",
+      "sourceUrl": "https://www.openstreetmap.org/node/13283439612",
+      "sourceProvider": "osm_nominatim",
+      "retrievedAt": "2026-11-20T17:03:59.885Z",
+      "relevantEvidence": "Observed public directory listing for \"Ambulatorio medico Maratea - Odontoiatria Fisioterapia Osteopatia\" in Milano. Website tag present: no; Phone metadata present: no.",
+      "evidenceClassification": "VERIFIED_SOURCE_DATA",
+      "confidence": 0.85,
+      "limitations": "OpenStreetMap relies on crowd-maintained metadata; website omission does not guarantee the business lacks an unlisted site."
+    },
+    {
+      "id": "p7_src_303bffbf-f",
+      "sourceTitle": "Wikipedia Reference: Faculty of Physiotherapy of Pontevedra",
+      "sourceUrl": "https://en.wikipedia.org/?curid=73429025",
+      "sourceProvider": "wikipedia",
+      "retrievedAt": "2026-11-20T17:04:00.501Z",
+      "relevantEvidence": "de la Facultade de Fisioterapia del campus de Pontevedra&quot;. La Voz de Galicia (in Spanish). 24 June 2022. &quot;Un máster en Fisioterapia , único título que estrenará",
+      "evidenceClassification": "VERIFIED_SOURCE_DATA",
+      "confidence": 0.72,
+      "limitations": "General sector overview only; not empirical pricing or revenue proof."
+    },
+    {
+      "id": "p7_src_c545e4da-c",
+      "sourceTitle": "Live HTTP Presence Inspection (www.fisioterapiaatlante.it) — Fisioterapia Atlante | Studio Fisioterapia e Osteopatia Milano |",
+      "sourceUrl": "https://www.fisioterapiaatlante.it/",
+      "sourceProvider": "live_http_audit",
+      "retrievedAt": "2026-11-20T17:04:00.575Z",
+      "relevantEvidence": "HTTP 200 in 70ms. HTTPS: yes, Mobile viewport: missing, Meta desc: present, Primary <h1>: missing, Booking form: missing, Clickable tel: link: missing. Public phone observed: 02-47712410. Observed technical gaps: Missing mobile viewport meta; No inline inquiry/booking form; Missing primary <h1> heading; No clickable tel: phone link.",
+      "evidenceClassification": "VERIFIED_SOURCE_DATA",
+      "confidence": 0.94,
+      "limitations": "Single-page HTML snapshot only; JavaScript-rendered widgets or third-party external booking links require manual browser check."
+    }
+  ],
+  "problemStatement": "Elementi già presenti sul sito attuale (https://www.fisioterapiaatlante.it/): protocollo HTTPS attivo e <meta name=\"description\"> presente. L’ispezione HTML della homepage pubblica ha rilevato esclusivamente le seguenti carenze tecniche verificabili: assenza del tag <meta name=\"viewport\"> per smartphone; assenza dell’intestazione primaria <h1> in homepage; assenza di un modulo inline di richiesta appuntamento; assenza di un link cliccabile tel: sul numero pubblico 02-47712410.",
+  "proposedSolution": "Fornitura di un prototipo web HTML5 responsive (anteprima locale non pubblicata) con tag <meta name=\"viewport\">, gerarchia semantica con <h1>, modulo richiesta appuntamento con consenso privacy GDPR e collegamento diretto tel: al numero pubblico verificato 02-47712410.",
+  "valueThesis": "Dimostrazione concreta e verificabile su prototipo reale, concentrata esclusivamente sulle carenze HTML osservate senza sovrascrivere ciò che già funziona (HTTPS e meta description restano preservati).",
+  "websiteOrProductPreview": {
+    "previewType": "RESPONSIVE_HTML5_CONCEPT",
+    "publishedExternally": false,
+    "title": "Fisioterapia Atlante — Prototipo Web Responsive (Milano)",
+    "htmlByteLength": 7253
+  },
+  "marketingStrategy": {
+    "positioningStatement": "Intervento tecnico mirato per Fisioterapia Atlante (Milano): prototipo dimostrativo statico pronto all'uso che risolve esclusivamente le carenze mobile e di conversione osservate nell'HTML pubblico.",
+    "outboundAutomationEnabled": false,
+    "recommendedHumanReviewedChannels": [
+      "Invio manuale 1-a-1 del link di anteprima solo dopo revisione e approvazione umana dell’operatore",
+      "Verifica manuale dei recapiti pubblici dello studio prima di qualunque contatto"
+    ],
+    "objectionHandlingNotes": [
+      "Nessun vincolo contrattuale plurimensile; il supporto mensile opzionale è separato dall’installazione una tantum.",
+      "Tutti gli importi e i tempi indicati sono stime pre-contrattuali soggette a conferma."
+    ]
+  },
+  "scopeOfWork": {
+    "includedDeliverables": [
+      "Prototipo HTML5 responsive mobile-first (<meta name=\"viewport\"> e layout adattivo)",
+      "Struttura semantica con intestazione primaria <h1> e metadati coerenti",
+      "Modulo richiesta appuntamento con consenso privacy GDPR esplicito",
+      "Pulsante di chiamata diretta verificato (tel: -> 02-47712410)"
+    ],
+    "explicitExclusions": [
+      "Nessuna spesa pubblicitaria (Google Ads/Meta Ads) né invii automatizzati di email, SMS o WhatsApp",
+      "Nessun trasferimento DNS/dominio, nessun contratto di hosting né attivazione pagamenti senza consenso scritto",
+      "Nessuna recensione inventata, nessun claim clinico o garanzia non verificata"
+    ],
+    "estimatedEffortHours": 12,
+    "estimatedInitialOperatingCostEur": 0
+  },
+  "estimatedDeliveryTimeline": [
+    {
+      "phase": "Giorni 1–2 [STIMA]",
+      "durationDays": "2 giorni",
+      "output": "Conferma testi, orari, trattamenti e recapiti ufficiali con lo studio"
+    },
+    {
+      "phase": "Giorni 3–5 [STIMA]",
+      "durationDays": "3 giorni",
+      "output": "Implementazione HTML5 responsive, test su smartphone iOS/Android e accessibilità"
+    },
+    {
+      "phase": "Giorni 6–7 [STIMA]",
+      "durationDays": "2 giorni",
+      "output": "Revisione finale con il titolare e pubblicazione previa autorizzazione scritta"
+    }
+  ],
+  "pricingProposal": {
+    "label": "STIMA COMMERCIALE NON VINCOLANTE (RICHIEDE COMPLETAMENTO DATI LEGALI/FISCALI DEL FORNITORE)",
+    "setupPriceEurEstimate": 450,
+    "optionalMonthlySupportEurEstimate": 99,
+    "realizedRevenueEur": 0,
+    "commercialTerms": {
+      "proposalVersion": "v2.0",
+      "supplierLegalStatus": "MISSING_OPERATOR_LEGAL_AND_TAX_DETAILS",
+      "setupPriceEur": 450,
+      "monthlyRetainerEur": 99,
+      "monthlyOptional": true,
+      "paymentTermsDraft": "Da confermare prima dell’invio vincolante: es. 50% alla conferma ordine e 50% al collaudo finale prima della pubblicazione definitiva, via bonifico bancario (IBAN fornitore da inserire).",
+      "missingOperatorLegalFields": [
+        "Ragione Sociale / Nome Legale completo del fornitore emittente",
+        "Partita IVA / Codice Fiscale e inquadramento fiscale (Regime Forfettario L. 190/2014 vs Ordinario + IVA 22%)",
+        "Indirizzo sede legale / domicilio fiscale fornitore e PEC",
+        "Coordinate bancarie (IBAN e intestatario conto) per il pagamento",
+        "Termini definitivi di pagamento, modalità consegna credenziali e clausola recesso/forza maggiore"
+      ],
+      "domainAndHostingResponsibility": "Il nome a dominio e gli account registrar restano di esclusiva titolarità e proprietà dello Studio cliente; il canone mensile opzionale copre esclusivamente hosting HTTPS gestito, monitoraggio SSL, backup e 2h/mese di manutenzione.",
+      "taxAssumption": "Importi indicati in EUR, al netto di eventuale IVA (o regime forfettario ex L. 190/2014 applicabile al fornitore) e oneri di legge da definire in sede di fatturazione fiscale; la presente proposta non costituisce fattura fiscale.",
+      "deliveryTimeline": "7 giorni lavorativi dalla conferma dei testi e dei recapiti dello studio (Giorno 1–2: revisione contenuti e tariffe; Giorno 3–4: implementazione responsive HTTPS e modulo prenotazione CRM; Giorno 5–7: collaudo smartphone iOS/Android e messa online).",
+      "setupScope": [
+        "Progettazione e messa online del restyling HTML5 responsive mobile-first (<meta name=\"viewport\">, navigazione leggibile da smartphone, CTA cliccabile e barra fissa mobile).",
+        "Organizzazione fedele dei contenuti reali dello studio (profilo professionale, elenco trattamenti verificati, tariffe indicative, orari 09:00–19:00, indicazioni Metro/bus e note su convenzioni).",
+        "Modulo diretto di richiesta visita / prima valutazione con invio immediato verso email dello studio e registro CRM dedicato.",
+        "Ottimizzazione SEO locale di base (title, meta description, OpenGraph e dati sede) + verifica certificato HTTPS/TLS.",
+        "Collaudo cross-device (iOS Safari, Android Chrome, Desktop) prima della pubblicazione definitiva."
+      ],
+      "setupExclusions": [
+        "Budget pubblicitario o gestione campagne sponsorizzate (Google Ads, Meta Ads).",
+        "Servizi fotografici/video professionali in sede o redazione ex novo di testi clinici specialistici.",
+        "Integrazioni API bidirezionali con software gestionali sanitari terzi, agende MioDottore/Doctolib, fatturazione elettronica o Sistema Tessera Sanitaria.",
+        "Rinnovo annuale del nome a dominio o caselle PEC presso il registrar attuale (intestazione e proprietà restano sempre al cliente).",
+        "Aree riservate pazienti con login/referti o versioni multi-lingua aggiuntive non concordate."
+      ],
+      "monthlyObligations": [
+        "Hosting HTTPS gestito ad alta disponibilità, monitoraggio uptime e verifica continua del certificato SSL.",
+        "Backup settimanali della versione pubblicata e della configurazione del modulo richieste.",
+        "Fino a 2 ore/mese di aggiornamenti ordinari (variazioni tariffe, nuovi orari feriali/estivi, inserimento o modifica trattamenti).",
+        "Aggiornamenti di sicurezza/compatibilità browser mobile e supporto tecnico prioritario entro 1 giorno lavorativo (disdetta libera con preavviso di 30 giorni, nessun vincolo)."
+      ],
+      "monthlyExclusions": [
+        "Sviluppo di nuove sezioni complesse, portali prenotazione o funzionalità software personalizzate oltre le 2 ore/mese incluse.",
+        "Attività SEO avanzate continuative (link building, blog editoriale mensile) o gestione profili social.",
+        "Consulenza legale/DPO GDPR o adeguamenti normativi sanitari esterni (lo studio resta unico Titolare del Trattamento dati)."
+      ]
+    }
+  },
+  "risksAndAssumptions": {
+    "assumptions": [
+      "Il titolare dello studio mantiene la piena proprietà di dominio, DNS e contenuti pubblicati.",
+      "Il preventivo indicativo (EUR 450 una tantum [STIMA]) è subordinato a conferma dei testi e dei dati fiscali prima di qualsiasi impegno contrattuale.",
+      "Numero telefonico pubblico verificato direttamente sul sito attuale dello studio: 02-47712410.",
+      "Revisione #2 applicata su indicazioni di controllo accuratezza: Verifica live HTTPS su www.fisioterapiaatlante.it e contatti.html: rimossi falsi rilievi su HTTPS/SSL/meta description/caricamento <2s; confermate solo le 4 criticità HTML reali (viewport, h1, form, link tel:); applicato numero telefonico pubblico verificato 02-47712410."
+    ],
+    "risks": [
+      "La sola ottimizzazione tecnica non produce appuntamenti se le richieste ricevute non vengono gestite tempestivamente dallo studio.",
+      "Informativa privacy GDPR e dati fiscali/legali del fornitore devono essere finalizzati prima della pubblicazione definitiva."
+    ]
+  },
+  "outreachDraftIt": {
+    "sendStatus": "UNSENT_REQUIRES_HUMAN_APPROVAL",
+    "targetProspectUrl": "https://www.fisioterapiaatlante.it/",
+    "subject": "Prototipo mobile e prenotazioni — Fisioterapia Atlante (Milano)",
+    "message": "Buongiorno,\nho consultato il sito pubblico di Fisioterapia Atlante (https://www.fisioterapiaatlante.it/) e ho preparato una breve anteprima dimostrativa gratuita, senza alcun impegno:\n- Adattamento mobile-first con viewport dedicato e gerarchia chiara dei contenuti su smartphone;\n- Modulo diretto di richiesta appuntamento con consenso GDPR e pulsante di chiamata rapida cliccabile verso il vostro numero 02-47712410.\nSul vostro sito attuale HTTPS e descrizione meta risultano già impostati correttamente; il prototipo interviene solo sulla resa da cellulare e sull'immediatezza del contatto.\nSe Le fa piacere visionare la bozza in anteprima privata, resto a disposizione.\nCordiali saluti."
+  },
+  "finalQualityReview": {
+    "reviewerAgentId": "quality_assurance_agent",
+    "generatorAgentId": "commerce_operations_agent",
+    "independentReviewVerified": true,
+    "status": "READY",
+    "totalScore": 92,
+    "findings": [],
+    "blockingIssues": [],
+    "criteria": [
+      {
+        "criterion": "accuracy",
+        "label": "Accuracy & Source Traceability",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "All 5 cited evidence record(s) trace cleanly to validated mission sources without contradiction."
+      },
+      {
+        "criterion": "completeness",
+        "label": "Package Section Completeness",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "All required commercial, technical, pricing-estimate, scope, risk, and assumption sections present."
+      },
+      {
+        "criterion": "designQuality",
+        "label": "Visual & Semantic Design Quality",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "Uses semantic HTML5 landmarks (<header>, <main>, <footer>) and structured CSS design tokens."
+      },
+      {
+        "criterion": "functionality",
+        "label": "Interactive Control Functionality",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "Contains functional preview form controls and valid internal/verified anchors."
+      },
+      {
+        "criterion": "customerRelevance",
+        "label": "Target Customer Relevance",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "Deliverable explicitly reflects \"fisioterapia\" in \"Milano\"."
+      },
+      {
+        "criterion": "usability",
+        "label": "Accessibility & Form Usability",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "Primary <h1> hierarchy and explicit <label for=\"...\"> accessibility bindings verified."
+      },
+      {
+        "criterion": "mobileResponsiveness",
+        "label": "Mobile Viewport & Responsive CSS",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "Verified <meta name=\"viewport\"> and @media mobile breakpoint rules without fixed desktop overflow."
+      },
+      {
+        "criterion": "technicalConsistency",
+        "label": "Technical & Preview Isolation Consistency",
+        "score": 9,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "Valid HTML5 doctype, <title>, and noindex,nofollow preview isolation directive present."
+      },
+      {
+        "criterion": "unsupportedClaims",
+        "label": "Zero Unsupported / Fabricated Claims",
+        "score": 10,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "No fabricated testimonials, unverified ROI guarantees, or synthetic performance claims detected."
+      },
+      {
+        "criterion": "securityRisks",
+        "label": "Deliverable Security Hygiene",
+        "score": 10,
+        "maxScore": 10,
+        "passed": true,
+        "finding": "Passed static security scan (zero eval/document.write/inline XSS/leaked keys; outbound automation disabled)."
+      }
+    ],
+    "reviewedAt": "2026-11-20T17:04:32.953Z"
+  }
+}

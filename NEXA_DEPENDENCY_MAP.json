@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-11-16T12:00:00Z",
+  "runtime_dependencies": {
+    "server": {
+      "express": "^4.21.2",
+      "node:sqlite": "built-in Node v22.23.2",
+      "@google/genai": "server-side Google Gemini SDK (gemini-4-hydrogen default)",
+      "zod": "runtime schema validation for agents, missions, API payloads",
+      "dotenv": "^17.2.3"
+    },
+    "client": {
+      "react": "^19.0.1",
+      "react-dom": "^19.0.1",
+      "three": "WebGL 3D NEXA Intelligence Core",
+      "lucide-react": "^0.546.0",
+      "motion": "^12.23.24",
+      "tailwindcss": "^4.3.3"
+    },
+    "test_and_build": {
+      "vitest": "unit, integration, and offline E2E test suite",
+      "tsx": "^4.21.0",
+      "typescript": "^7.0.2",
+      "vite": "^8.3.0"
+    }
+  },
+  "legacy_dependency_graph": {
+    "nexa_orchestrator.py": ["nexa_multi_ai_engine.py"],
+    "nexa_multi_ai_engine.py": ["nexa_ai_gateway.py"],
+    "nexa_ai_gateway.py": ["urllib.request (OpenRouter, Groq, NVIDIA)"],
+    "nexa_bridge_service.py": ["nexa6.sqlite3", "nexa_commerce.sqlite3", "nexa_bridge.sqlite3"],
+    "notebook_cells_v3": ["google-genai", "arxiv_atom_api", "duckduckgo_search (BROKEN/MISSING)"]
+  },
+  "external_provider_endpoints": [
+    {
+      "id": "GEMINI",
+      "protocol": "Google @google/genai SDK (server-side only)",
+      "env_var": "GEMINI_API_KEY",
+      "default_model": "gemini-4-hydrogen"
+    },
+    {
+      "id": "OPENROUTER",
+      "protocol": "OpenAI-compatible REST (https://openrouter.ai/api/v1)",
+      "env_var": "OPENROUTER_API_KEY",
+      "policy": "strict :free + zero prompt/completion pricing + text->text modality"
+    },
+    {
+      "id": "GROQ",
+      "protocol": "OpenAI-compatible REST (https://api.groq.com/openai/v1)",
+      "env_var": "GROQ_API_KEY"
+    },
+    {
+      "id": "NVIDIA",
+      "protocol": "OpenAI-compatible REST (https://integrate.api.nvidia.com/v1)",
+      "env_var": "NVIDIA_API_KEY"
+    },
+    {
+      "id": "OPENAI",
+      "protocol": "OpenAI-compatible REST (https://api.openai.com/v1)",
+      "env_var": "OPENAI_API_KEY",
+      "policy": "paid provider; disabled unless explicitly enabled"
+    },
+    {
+      "id": "ANTHROPIC",
+      "protocol": "Anthropic Messages API (https://api.anthropic.com/v1)",
+      "env_var": "ANTHROPIC_API_KEY",
+      "policy": "paid provider; disabled unless explicitly enabled"
+    },
+    {
+      "id": "DEEPSEEK",
+      "protocol": "OpenAI-compatible REST (https://api.deepseek.com/v1)",
+      "env_var": "DEEPSEEK_API_KEY",
+      "policy": "paid/metered unless free tier verified"
+    },
+    {
+      "id": "QWEN",
+      "protocol": "DashScope OpenAI-compatible REST",
+      "env_var": "QWEN_API_KEY"
+    }
+  ]
+}

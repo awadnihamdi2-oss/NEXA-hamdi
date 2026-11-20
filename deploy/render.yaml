@@ -1,0 +1,47 @@
+# NOTE: Render auto-detects the Blueprint at repository root (/render.yaml).
+# Keep FREE ($0/mo, zero credit card, no paid Starter plan, no paid Disk).
+
+services:
+  - type: web
+    name: nexa-quant-intelligence
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    numInstances: 1
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: DISABLE_HMR
+        value: "true"
+      - key: NEXA_DATA_DIR
+        value: /app/data
+      - key: NEXA_DB_PATH
+        value: /app/data/nexa_genesis.sqlite3
+      - key: NEXA_PAID_FALLBACK_ALLOWED
+        value: "false"
+      - key: NEXA_LIVE_TRADING_ENABLED
+        value: "false"
+      - key: NEXA_EXTERNAL_COMMERCE_ENABLED
+        value: "false"
+      - key: NEXA_SESSION_SECRET
+        generateValue: true
+      - key: NEXA_SCHEDULER_TOKEN
+        generateValue: true
+      - key: NEXA_ADMIN_PASSWORD
+        sync: false
+      - key: GEMINI_API_KEY
+        value: ""
+      - key: OPENROUTER_API_KEY
+        value: ""
+      - key: GROQ_API_KEY
+        value: ""
+      - key: NVIDIA_API_KEY
+        value: ""
+      - key: NEXA_BACKUP_GIST_TOKEN
+        value: ""
+      - key: NEXA_BACKUP_GIST_ID
+        value: ""
+

@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Plus Jakarta Sans', 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+    --font-sans: 'DM Sans', 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    --nexa-void: #030508;
+    --nexa-mineral: #060911;
+    --nexa-plane: rgba(7, 10, 17, 0.88);
+    --nexa-hairline: rgba(203, 213, 225, 0.14);
+    --nexa-pearl: #f4f6fa;
+    --nexa-silver: #cbd5e1;
+    --nexa-cyan: #38bdf8;
+    --nexa-violet: #8b5cf6;
+    --nexa-amber: #f59e0b;
+  }
+
+  html,
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--nexa-void);
+    color: var(--nexa-pearl);
+    letter-spacing: 0.006em;
+    overflow-x: hidden;
+  }
+
+  html[dir='rtl'],
+  html[dir='rtl'] body {
+    font-family: 'IBM Plex Sans Arabic', 'DM Sans', system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--nexa-cyan);
+    outline-offset: 2px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Precision architectural coordinate lattice */
+.nexa-coordinate-plane {
+  background-image:
+    linear-gradient(to right, rgba(203, 213, 225, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(203, 213, 225, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Translucent mineral-obsidian structural plane (zero backdrop-filter over WebGL) */
+.nexa-plane {
+  background-color: rgba(7, 10, 17, 0.89);
+  border: 1px solid rgba(203, 213, 225, 0.14);
+}
+
+.nexa-plane-solid {
+  background-color: #060911;
+  border: 1px solid rgba(203, 213, 225, 0.14);
+}
+
+/* Smooth compositor-only stage entrance (<= 200ms) */
+@keyframes nexaFadeSettle {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nexa-stage-enter {
+  animation: nexaFadeSettle 190ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nexa-stage-enter {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* iPhone safe-area bottom spacing */
+.pb-safe {
+  padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
+}
+
+/* Subtle mineral obsidian scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030508;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
